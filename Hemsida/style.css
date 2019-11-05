@@ -1,11 +1,12 @@
 *{
        
-font-family: 'Open Sans', sans-serif;
+font-family: 'Candara';
 margin: 0;
 padding: 0;
 border: 0;
 outline: 0;
 font-size: 100%;
+font-weight: 700;
 vertical-align: baseline;
                   
 }
@@ -25,13 +26,23 @@ body{
 }
 
 #header{
+    background-image: url("penna.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    
     text-align: center;
     color:  black;
     width: 100%;
+    position: relative;
 }
 
+
 #header h1{
-    font-size: 50px;
+    font-size: 70px;
+    
+}
+#header h3{
+    font-size: 30px;
     
 }
 
@@ -40,7 +51,7 @@ body{
 .nav ul {list-style:none; margin:0; padding:0; width: 100%;}
 .nav li {float:left; width:20%; background-color:#ff8800; text-align:center;
           position:relative;
-         height:50px; line-height:50px;}
+         height:50px; line-height:50px; font-size: 30px;}
 .nav li ul li {float:none; width:100%; text-align:center;}
 .nav a {text-decoration:none; color:white;background-color: transparent; }
 .nav li ul {position:absolute; top:45px; left:0; visibility:hidden;}
@@ -109,7 +120,7 @@ body{
 
 .img-p {
   position: absolute;
-  font-size: 16px;
+  font-size: 20px;
   opacity: 0;
   color: #FFF;
   background-color: transparent; 
