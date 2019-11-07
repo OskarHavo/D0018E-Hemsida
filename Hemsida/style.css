@@ -76,6 +76,7 @@
 #container{
     margin: 0 auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     width: 80%;    
 }
 
@@ -110,7 +111,7 @@ body{
 .nav ul {list-style:none; margin:0; padding:0; width: 100%;}
 .nav li {float:left; width:19%; background-color:#ff8800; text-align:center;
     position:relative;
-    height:50px; line-height:50px; font-size: 30px;}
+    height:50px; line-height:50px; font-size: 25px;}
 .nav li ul li {float:none; width:100%; text-align:center;}
 .nav a {text-decoration:none; color:white;background-color: transparent; }
 .nav li ul {position:absolute; top:45px; left:0; visibility:hidden;}
@@ -268,6 +269,7 @@ body{
     height: 400px;
     float: left;
     margin-top: 60px;
+    margin-bottom: 60px;
     text-align: center;
     font-size: 40px;
     font-weight: bold;
