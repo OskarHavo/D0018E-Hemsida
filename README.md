@@ -11,5 +11,3 @@ Backlog Hittas i Backlog.xlsx
 - Kan lägga till varor i en kundvagn som sparas mellan sessioner.
 - Det som finns i kundvagnen går att köpa om allt finns i lager.
 - TBD: Varje kund har en användare i butiken.
-
-Hemsida: https://bgeqxnmj.p50.rt3.io/
