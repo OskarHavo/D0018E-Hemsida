@@ -12,4 +12,4 @@ Backlog Hittas i Backlog.xlsx
 - Det som finns i kundvagnen går att köpa om allt finns i lager.
 - TBD: Varje kund har en användare i butiken.
 
-Hemsida: proxy55.rt3.io
+Hemsida: https://bgeqxnmj.p50.rt3.io/
