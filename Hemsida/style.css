@@ -209,43 +209,40 @@ body{
 
 /* Productpage.html */
 
-#productname{
-    width: 100%;
-    float: left;
-    height: 100px;
-    background-color: #bd0b0b;
-    margin-top: 60px;
-    font-size: 60px;
-    font-weight: bold;
-    text-align: center;   
-}
+
 
 #product{
+    margin-top: 60px;
     width: 60%;
-    height: 485px;
+    height: 497px;
     float: left;
     background-color: white;  
 }
 
 #product img{ 
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
   max-width: 100%;
   max-height: 100%;
 }
 
 .responsive-table {
+    margin-top: 60px;
     width: 40%;
     height: 370px;
     float: left;
-    background-color: #e6e6a6;
+    background-color: #ffac4d;
     color: black;
     table-layout: fixed; 
+    font-size: 20px;
 }
 
 .responsive-table caption{
     padding-top: 10px;
     padding-bottom: 10px;    
-    background-color: #bddb0b;
-    font-size: 20px;
+    background-color: #ff8800;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -260,7 +257,7 @@ body{
     text-align: center;
     font-size: 40px;
     font-weight: bold;
-    background-color:  green;
+    background-color:  #ff8800;
 
 
 }
@@ -280,7 +277,7 @@ body{
     text-align: center;
     font-size: 40px;
     font-weight: bold;
-    background-color: palevioletred;
+    background-color: #ffac4d;
 
 
 }
@@ -293,7 +290,7 @@ body{
     width: 100%;
     float: left;
     height: 100px;
-    background-color: #bd0b0b;
+    background-color: #ffac4d;
     margin-top: 60px;
     font-size: 60px;
     font-weight: bold;
@@ -305,22 +302,37 @@ body{
 
 
 
-/* Kontaktinformation.html */
+/* User.html */
 
 
-#kontaktinformationrubric{
+.userdiv{
     width: 100%;
     float: left;
     height: 100px;
-    background-color: #bd0b0b;
+    background-color: #ffac4d ;
     margin-top: 60px;
     font-size: 60px;
     font-weight: bold;
     text-align: center; 
 
 }
+.userdiv:active{
+     background-color:  blue;
+    
+    
+}
+.userdiv:hover span{
+    display: 'none';
+    
+    
+}
+.userdiv:hover:before{
+    content: "SIKE";
+    
+    
+}
 
-/* Kontaktinformation.html */
+/* User.html */
 
 
 
