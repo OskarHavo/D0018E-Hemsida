@@ -1,0 +1,40 @@
+CREATE TABLE Products(
+	ProductName varchar(255) NOT NULL,
+	ProductType varchar(255) NOT NULL,
+	ProductColor varchar(255),
+	ProductPrice varchar(255) NOT NULL,
+	InStock varchar(255) NOT NULL,
+	ProductNumber int NOT NULL,
+	PRIMARY KEY (ProductNumber)
+
+);
+INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock, ProductNumber) VALUES('BIC Multicolor','Bläckpenna','Vit/Blå','20 kr', '24 stycken', '1001');
+INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock, ProductNumber) VALUES('MontBlanc Elegance','Bläckpenna','Svart','200 kr', '8 stycken', '1002');
+INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock, ProductNumber) VALUES('Janssons Klassiker','Bläckpenna','Svart','5 kr', '653 stycken', '1003');
+
+INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock, ProductNumber) VALUES('Skolorginalet','Blyertspenna','Orange','2 kr', '2432 stycken', '2001');
+INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock, ProductNumber) VALUES('Skolorginalet med Sudd','Blyertspenna','Orange','9 kr', '454 stycken', '2002');
+INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock, ProductNumber) VALUES('Faber-Castell Grip Plus','Blyertspenna','Svart/Grön','30 kr', '23 stycken', '2003');
+
+INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock, ProductNumber) VALUES('Nybörjarpennan','Resevoarpenna','Svart','250 kr', '40 stycken', '3001');
+INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock, ProductNumber) VALUES('Mont Blanc Resevoarpenna','Resevoarpenna','Svart','3000 kr', '54 stycken', '3002');
+INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock, ProductNumber) VALUES('Guldpennan','Resevoarpenna','Guld','40 000 kr', '3 stycken', '3003');
+
+
+CREATE TABLE Accounts (
+
+);
+
+CREATE TABLE Orders (
+
+);
+
+CREATE TABLE Shoppingcarts (
+
+);
+
+CREATE TABLE Comments(
+
+);
+
+
