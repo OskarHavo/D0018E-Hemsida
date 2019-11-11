@@ -146,7 +146,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Artikelnummer</th>
-                        <td>0097</td>
+                        <td><?php echo $product["ProductNumber"]?></td>
                     </tr>
 
                 </tbody>
