@@ -71,25 +71,25 @@
                     <li>
                         <a>Bläckpennor</a>
                         <ul>
-                            <li><a href="Productpage.html">Penna1</a></li>
-                            <li><a href="Productpage.html">Penna2</a></li>
-                            <li><a href="Productpage.html">Penna3</a></li>
+                            <li><a href="Productpage.php?ProductNumber=1001">Penna1</a></li>
+                            <li><a href="Productpage.php?ProductNumber=1002">Penna2</a></li>
+                            <li><a href="Productpage.php?ProductNumber=1003">Penna3</a></li>
                         </ul>
                     </li>
                     <li>
                         <a>Blyertspennor</a>
                         <ul>
-                            <li><a href="Productpage.html">Penna1</a></li>
-                            <li><a href="Productpage.html">Penna2</a></li>
-                            <li><a href="Productpage.html">Penna3</a></li>
+                            <li><a href="Productpage.php?ProductNumber=2001">Penna1</a></li>
+                            <li><a href="Productpage.php?ProductNumber=2002">Penna2</a></li>
+                            <li><a href="Productpage.php?ProductNumber=2003">Penna3</a></li>
                         </ul>
                     </li>
                     <li>
                         <a>Resevoarpennor</a>
                         <ul>
-                            <li><a href="Productpage.html">Penna1</a></li>
-                            <li><a href="Productpage.html">Penna2</a></li>
-                            <li><a href="Productpage.html">Penna3</a></li>
+                            <li><a href="Productpage.php?ProductNumber=3001">Penna1</a></li>
+                            <li><a href="Productpage.php?ProductNumber=3002">Penna2</a></li>
+                            <li><a href="Productpage.php?ProductNumber=3003">Penna3</a></li>
                         </ul>
                     </li>
 
@@ -103,6 +103,7 @@
                             </a>
 
                         </li>
+
                     </div>
 
                 </ul>
