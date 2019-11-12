@@ -22,19 +22,104 @@ INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock
 
 
 CREATE TABLE Accounts (
-
+	CustomerID int NOT NULL PRIMARY KEY,
+	Password int NOT NULL
 );
+
+/* 
+*  Här har vi produktnummer, ordernummer och kundID.
+*  För att se alla ordernummer som en person har, skriv:
+*  select DISTINCT(OrderID) from Orders where CustomerID='CustomerID';
+*
+*  Det kan ju finnas flera produkter i en order, så varje rad innehåller
+*  en produkt för en viss order.
+*/
++---------+----------+---------------+------------+
+| OrderID | quantity | ProductNumber | CustomerID |
++---------+----------+---------------+------------+
+|       1 |       23 |          1002 |        123 |
+|       2 |       33 |          3001 |        345 |
++---------+----------+---------------+------------+
 
 CREATE TABLE Orders (
+OrderID int NOT NULL,
+quantity int NOT NULL,
+ProductNumber int NOT NULL,
+CustomerID int NOT NULL,
+CONSTRAINT fk_customer_id
+FOREIGN KEY (CustomerID) REFERENCES Accounts (CustomerID)
+ON DELETE CASCADE
+ON UPDATE RESTRICT,
 
+CONSTRAINT fk_product_number
+FOREIGN KEY (ProductNumber) REFERENCES Products(ProductNumber )
+ON DELETE RESTRICT
+ON UPDATE RESTRICT,
+
+CONSTRAINT PK_Order
+PRIMARY KEY (OrderID, ProductNumber)
 );
+
+
+
+
+
+/* I den här har vi ett ordernummer och kundID.
+*  Odernummret pekar på Orders, villket gör att
+*  det som finns i kundkorgen går att hantera på
+*  samma sätt som alla andra ordrar. Enda undantaget
+*  är att ordern finns i kundvagnen vilket indikerar 
+*  att beställningen inte gjorts än.
+*
+*  Alla beställningar skapas här. Så vi måste se 
+*  till att ordernummer är unikt, annars kan det 
+*  bli fel i Orders.
+*/
++---------+------------+
+| OrderID | CustomerID |
++---------+------------+
+|       1 |        123 |
++---------+------------+
 
 CREATE TABLE Shoppingcarts (
-
+OrderID int NOT NULL UNIQUE,
+CustomerID int NOT NULL,
+CONSTRAINT fk_order_id
+FOREIGN KEY (OrderID) REFERENCES Orders (OrderID)
+ON DELETE CASCADE
+ON UPDATE RESTRICT,
+CONSTRAINT PK_shoppingcart
+PRIMARY KEY (CustomerID)
 );
+
+
+
+
+
+
+/*
+* I kommentarerna så tillåts bara kommentarer på 
+* produkter som ingår i en order. Dock kan 
+* personer som inte köpt en produkt lägga kommentarer
+* via någon annans order. Detta måste vi dubbelkolla 
+* i php!
+*/
++------------+---------+---------------+---------------------+
+| CustomerID | OrderID | ProductNumber | Comment             |
++------------+---------+---------------+---------------------+
+|        345 |       1 |          1002 | I hate this product |
++------------+---------+---------------+---------------------+
 
 CREATE TABLE Comments(
-
+CustomerID int NOT NULL,
+OrderID int NOT NULL,
+ProductNumber int NOT NULL,
+Comment text(2048) NOT NULL,
+CONSTRAINT
+FOREIGN KEY(OrderID, ProductNumber) REFERENCES Orders(OrderID, ProductNumber),
+CONSTRAINT
+FOREIGN KEY(CustomerID) REFERENCES Accounts(CustomerID),
+CONSTRAINT
+PRIMARY KEY (ProductNumber, CustomerID)
 );
-
 
