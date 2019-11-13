@@ -49,12 +49,9 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
-        <script src="csi.js"></script>
-
-
     </head>
     <body>
-        <div data-include="navbar.html"></div>
+        <?php include("navbar.php"); ?>
         <div id="container">
 
             <div id="product">
