@@ -40,7 +40,7 @@
     //        echo "Produkt: ".$row["ProductName"]." Färg: ".$row["ProductColor"]." Produktnummer: ".$row["ProductNumber"]." Pris: ".$row["ProductPrice"]." I lager: ".$row["InStock"]."<br>";
     //}
     //echo $query_result["ProductNumber"];
-    //$conn->close();
+    $conn->close();
     //echo $query_result["ProductNumber"];
 ?>
 
