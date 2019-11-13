@@ -7,7 +7,7 @@
 ?>
 <?php
     $servername = "localhost";
-    $username = "";
+    $username = "customer";
     $password = "";
     $dbname = "website";
     $productID = $_GET["ProductNumber"];    // Produktnummer från URL
