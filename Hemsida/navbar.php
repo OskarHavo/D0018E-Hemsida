@@ -1,3 +1,34 @@
+<?php
+
+    // Koppla upp mot servern.
+    $servername = "localhost";
+    $username = "customer";
+    $password = "";
+    $dbname = "website";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Kolla om uppkopplingen gick bra.
+    if ($conn->connect_error) {
+        redirect("404.html");   // Error 404
+    }
+
+    $query_result = $conn->query("SELECT ProductName FROM Products WHERE ProductNumber='$productID'");
+
+    /* Hämta produkten vi söker från resultatet */
+    $product = $query_result->fetch_assoc();
+
+    // Kolla om produkten faktiskt finns
+    if (!$product) {
+        $conn->close();
+        redirect("404.html");
+    }
+
+    /* Rensa resultatet och koppla från servern. */
+    mysqli_free_result($query_result);
+    $conn->close();
+
+?>
 <div id="container">
             <div id="header">
 
@@ -17,9 +48,9 @@
                     <li>
                         <a>Bläckpennor</a>
                         <ul>
-                            <li><a href="Productpage.php?ProductNumber=1001">Penna1</a></li>
-                            <li><a href="Productpage.php?ProductNumber=1002">Penna2</a></li>
-                            <li><a href="Productpage.php?ProductNumber=1003">Penna3</a></li>
+                            <li><a href="Productpage.php?ProductNumber=1001"><?php echo "SELECT ProductName FROM Products WHERE ProductNumber='1001'";?></a></li>
+                            <li><a href="Productpage.php?ProductNumber=1002"><?php echo "SELECT ProductName FROM Products WHERE ProductNumber='1002'";?></a></li>
+                            <li><a href="Productpage.php?ProductNumber=1003"><?php echo "SELECT ProductName FROM Products WHERE ProductNumber='1003'";?></a></li>
                         </ul>
                     </li>
                     <li>
