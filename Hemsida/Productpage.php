@@ -6,42 +6,46 @@
     }
 ?>
 <?php
-    $servername = "localhost";
-    $username = "customer";
-    $password = "";
-    $dbname = "website";
-    $productID = $_GET["ProductNumber"];    // Produktnummer från URL
-
-    // Koppla upp mot servern.
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Kolla uppkopplingen.
-    if ($conn->connect_error) {
-            redirect("404.html");
-    }
-
     /*
     * Bra info
     * https://www.w3schools.com/php/php_superglobals_get.asp
     */
+    $productID = $_GET["ProductNumber"];    // Produktnummer från URL
 
     /* Den här öppnar 404.html om ett produktnummer inte finns */
     if ($productID == NULL) {
         redirect("404.html");
     }
 
-    $sql_query = "SELECT * FROM Products WHERE ProductNumber='".$productID."'";
-    $query_result = $conn->query($sql_query);
 
+    // Koppla upp mot servern.
+    $servername = "localhost";
+    $username = "customer";
+    $password = "";
+    $dbname = "website";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Kolla om uppkopplingen gick bra.
+    if ($conn->connect_error) {
+        redirect("404.html");   // Error 404
+    }
+
+    $query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID'");
+
+    /* Hämta produkten vi söker från resultatet */
     $product = $query_result->fetch_assoc();
 
+    // Kolla om produkten faktiskt finns
+    if (!$product) {
+        $conn->close();
+        redirect("404.html");
+    }
 
-    //while($row = $query_result->fetch_assoc()) {
-    //        echo "Produkt: ".$row["ProductName"]." Färg: ".$row["ProductColor"]." Produktnummer: ".$row["ProductNumber"]." Pris: ".$row["ProductPrice"]." I lager: ".$row["InStock"]."<br>";
-    //}
-    //echo $query_result["ProductNumber"];
+    /* Rensa resultatet och koppla från servern. */
+    mysqli_free_result($query_result);
     $conn->close();
-    //echo $query_result["ProductNumber"];
+
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +76,7 @@
                     <td></td>
                     <tr>
                         <th scope="row">Pris</th>
-                        <td><?php echo $product["ProductPrice"]?> kr</td>
+                        <td><?php echo $product["ProductPrice"]?> :-</td>
                     </tr>
                     <tr>
                         <th scope="row">Lagerstatus</th>
@@ -103,18 +107,7 @@
             <div id = "reviewdiv">
 
                 <p>  Lämna en recension!    </p>
-
-
             </div>
-
-
-
-
         </div>
-
     </body>
-
 </html>
-<?php
-    mysql_free_result($query_result);
-?>
