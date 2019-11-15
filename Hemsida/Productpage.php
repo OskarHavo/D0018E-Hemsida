@@ -1,11 +1,6 @@
 <?php
-    /* Källa: https://stackoverflow.com/questions/768431/how-do-i-make-a-redirect-in-php*/
-    function redirect($url, $statusCode = 303) {
-        header('Location: ' . $url, true, $statusCode);
-        die();
-    }
-?>
-<?php
+    include("redirect.php");
+    include("server_connect.php");
     /*
     * Bra info
     * https://www.w3schools.com/php/php_superglobals_get.asp
@@ -17,21 +12,12 @@
         redirect("404.html");
     }
 
-
-    // Koppla upp mot servern.
-    $servername = "localhost";
-    $username = "customer";
-    $password = "";
-    $dbname = "website";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Kolla om uppkopplingen gick bra.
-    if ($conn->connect_error) {
-        redirect("404.html");   // Error 404
-    }
-
+    $conn = server_connect();
     $query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID'");
+
+    if (!$query_result) {
+        echo "Error executing query: (" . $conn->errno . ") " . $conn->error;
+    }
 
     /* Hämta produkten vi söker från resultatet */
     $product = $query_result->fetch_assoc();
