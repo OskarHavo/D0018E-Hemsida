@@ -22,8 +22,8 @@ INSERT INTO Products(ProductName,ProductType,ProductColor, ProductPrice, InStock
 
 
 CREATE TABLE Accounts (
-	CustomerID int NOT NULL PRIMARY KEY,
-	Password int NOT NULL
+	CustomerID varchar(16) NOT NULL PRIMARY KEY,
+	Password varchar(112) NOT NULL
 );
 
 /* 
@@ -43,9 +43,9 @@ CREATE TABLE Accounts (
 
 CREATE TABLE Orders (
 OrderID int NOT NULL,
-quantity int NOT NULL,
+Quantity int NOT NULL,
 ProductNumber int NOT NULL,
-CustomerID int NOT NULL,
+CustomerID varchar(16) NOT NULL,
 CONSTRAINT fk_customer_id
 FOREIGN KEY (CustomerID) REFERENCES Accounts (CustomerID)
 ON DELETE CASCADE
@@ -83,7 +83,7 @@ PRIMARY KEY (OrderID, ProductNumber)
 
 CREATE TABLE Shoppingcarts (
 OrderID int NOT NULL UNIQUE,
-CustomerID int NOT NULL,
+CustomerID varchar(16) NOT NULL,
 CONSTRAINT fk_order_id
 FOREIGN KEY (OrderID) REFERENCES Orders (OrderID)
 ON DELETE CASCADE
@@ -111,7 +111,7 @@ PRIMARY KEY (CustomerID)
 +------------+---------+---------------+---------------------+
 
 CREATE TABLE Comments(
-CustomerID int NOT NULL,
+CustomerID varchar(16) NOT NULL,
 OrderID int NOT NULL,
 ProductNumber int NOT NULL,
 Comment text(2048) NOT NULL,
