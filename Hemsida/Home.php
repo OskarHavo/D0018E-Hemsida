@@ -6,7 +6,7 @@
     </head>
 
     <body >
-        <?php include("navbar.php"); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT']."/navbar.php"); ?>
 
         <div id="container">
 

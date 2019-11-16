@@ -1,6 +1,6 @@
 <?php
-    include("redirect.php");
-    include("server_connect.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
+    include_once ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
     /*
     * Bra info
     * https://www.w3schools.com/php/php_superglobals_get.asp
@@ -11,7 +11,6 @@
     if ($productID == NULL) {
         redirect("404.html");
     }
-
     $conn = server_connect();
     $query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID'");
 
