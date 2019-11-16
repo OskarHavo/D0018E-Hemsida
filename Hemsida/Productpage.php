@@ -13,6 +13,7 @@
     }
     $conn = server_connect();
     $query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID'");
+    $query_result2 = $conn->query("SELECT * FROM Comments WHERE ProductNumber='$productID'");
 
     if (!$query_result) {
         echo "Error executing query: (" . $conn->errno . ") " . $conn->error;
@@ -20,6 +21,7 @@
 
     /* Hämta produkten vi söker från resultatet */
     $product = $query_result->fetch_assoc();
+    $comment = $query_result2->fetch_assoc();
 
     // Kolla om produkten faktiskt finns
     if (!$product) {
@@ -29,6 +31,7 @@
 
     /* Rensa resultatet och koppla från servern. */
     mysqli_free_result($query_result);
+    mysqli_free_result($query_result2);
     $conn->close();
 
 ?>
@@ -88,10 +91,26 @@
                 <p> Köp </p>
 
             </div>
-
+            <div class = "leavereviewdiv">
+                <p> Tryck här för att lämna en recension!  </p>
+            </div>
             <div id = "reviewdiv">
 
-                <p>  Lämna en recension!    </p>
+                <p>  Recensioner  </p>
+                
+                <table class="review-table">
+                <tbody>
+                    <tr>
+                        <th scope="row"><?php echo $comment["CustomerID"];?></th>
+                        <td><?php echo $comment["rating"];?></td>
+                        <td><?php echo $comment["Comment"];?></td>
+                        <td>  report   </td>
+                    </tr>
+
+                </tbody>
+            </table>
+                
+                
             </div>
         </div>
     </body>
