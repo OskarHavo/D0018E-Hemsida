@@ -1,38 +1,38 @@
 <?php
-    include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
-    include_once ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-    /*
+include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
+/*
     * Bra info
     * https://www.w3schools.com/php/php_superglobals_get.asp
     */
-    $productID = $_GET["ProductNumber"];    // Produktnummer från URL
+$productID = $_GET["ProductNumber"];    // Produktnummer från URL
 
-    /* Den här öppnar 404.html om ett produktnummer inte finns */
-    if ($productID == NULL) {
-        redirect("404.html");
-    }
-    $conn = server_connect();
-    $query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID'");
-    $query_result2 = $conn->query("SELECT * FROM Comments WHERE ProductNumber='$productID'");
+/* Den här öppnar 404.html om ett produktnummer inte finns */
+if ($productID == NULL) {
+    redirect("404.html");
+}
+$conn = server_connect();
+$query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID'");
+$query_result2 = $conn->query("SELECT * FROM Comments WHERE ProductNumber='$productID'");
 
-    if (!$query_result) {
-        echo "Error executing query: (" . $conn->errno . ") " . $conn->error;
-    }
+if (!$query_result) {
+    echo "Error executing query: (" . $conn->errno . ") " . $conn->error;
+}
 
-    /* Hämta produkten vi söker från resultatet */
-    $product = $query_result->fetch_assoc();
-    $comment = $query_result2->fetch_assoc();
+/* Hämta produkten vi söker från resultatet */
+$product = $query_result->fetch_assoc();
+$comment = $query_result2->fetch_assoc();
 
-    // Kolla om produkten faktiskt finns
-    if (!$product) {
-        $conn->close();
-        redirect("404.html");
-    }
-
-    /* Rensa resultatet och koppla från servern. */
-    mysqli_free_result($query_result);
-    mysqli_free_result($query_result2);
+// Kolla om produkten faktiskt finns
+if (!$product) {
     $conn->close();
+    redirect("404.html");
+}
+
+/* Rensa resultatet och koppla från servern. */
+mysqli_free_result($query_result);
+mysqli_free_result($query_result2);
+$conn->close();
 
 ?>
 
@@ -70,11 +70,11 @@
                         <th scope="row">Lagerstatus</th>
                         <td>
                             <?php
-                                if ($product["InStock"] == 0) {
-                                    echo "Slut i lager";
-                                } else {
-                                    echo $product["InStock"]. " st";
-                                }
+    if ($product["InStock"] == 0) {
+        echo "Slut i lager";
+    } else {
+        echo $product["InStock"]. " st";
+    }
                             ?>
                         </td>
                     </tr>
@@ -97,20 +97,20 @@
             <div id = "reviewdiv">
 
                 <p>  Recensioner  </p>
-                
-                <table class="review-table">
-                <tbody>
-                    <tr>
-                        <th scope="row"><?php echo $comment["CustomerID"];?></th>
-                        <td><?php echo $comment["rating"];?></td>
-                        <td><?php echo $comment["Comment"];?></td>
-                        <td>  report   </td>
-                    </tr>
 
-                </tbody>
-            </table>
-                
-                
+                <table class="review-table">
+                    <tbody>
+                        <tr>
+                            <th scope="row"><?php echo $comment["CustomerID"];?></th>
+                            <td><?php echo $comment["rating"];?></td>
+                            <td><?php echo $comment["Comment"];?></td>
+                            <td>  reportbutton  </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
             </div>
         </div>
     </body>
