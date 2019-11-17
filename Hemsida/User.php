@@ -11,12 +11,25 @@
 
         <?php include("navbar.php"); ?>
 
+            <div class=userdiv>
+            <form >
+                <fieldset>
+                <legend>Skapa en användare!</legend>    
+                    
+                Username:<br>
+                <input type="text" name="username" value="BastionMain">
+                <br>
+                Password: <br>
+                <input type="text" name="password" value="titta inte i adressfält">
+                <br>
+                <input type="submit" value="Submit">
 
-
-
-            <div class="userdiv">
-                <p><span>Hovra över mig.</span></p>
-            </div>
+        
+        
+        
+            </fieldset>
+            </form>
+        </div>
 
 
     </body>

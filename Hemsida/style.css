@@ -87,7 +87,7 @@ body{
 
 #header{
     padding-top: 20px;
-    background-image: url("Rubrikpenna.png");
+    background-image: url("Bilder/HeaderPencil.png");
     background-repeat: no-repeat;
     background-position: center; 
 
@@ -340,28 +340,21 @@ body{
 .userdiv{
     width: 100%;
     float: left;
-    height: 100px;
-    background-color: #ffac4d ;
     margin-top: 60px;
     font-size: 60px;
-    font-weight: bold;
     text-align: center; 
 
 }
-.userdiv:active{
-     background-color:  blue;
+.userdiv legend{
+    font-size: 80px;
+    padding-left: 31%; /* vill inte centrera*/
+    text-align: center; 
     
-    
+    color: #bd0b0b;
 }
-.userdiv:hover span{
-    display: 'none';
-    
-    
-}
-.userdiv:hover:before{
-    
-    
-    
+
+.userdiv form submit{
+    background-color: aquamarine;
 }
 
 /* User.html */

@@ -47,7 +47,7 @@
         <div id="container">
 
             <div id="product">
-                <img src="Penna1.jpg">
+                <img src="Bilder/1001.jpg">
             </div>
             <table class="responsive-table">
                 <caption><?php echo $product["ProductName"];?></caption>

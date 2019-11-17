@@ -53,7 +53,7 @@ function create_category() {
             <div class="shoppingcart">
                 <li>
                     <a href="Shoppingcart.php">
-                        <img src="shoppingcart.png" width="50px" height="50px" >
+                        <img src="Bilder/shoppingcart.png" width="50px" height="50px" >
                     </a>
 
                 </li>
