@@ -1,3 +1,20 @@
+<?php
+include ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
+
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $connection = server_connect();
+    //echo $_POST["name"]."<br>".$_POST["password"];
+    /*
+    if ($_POST["new_user"]) {
+        $user = find_user($_POST["new_user"] $connection);
+        if (!$user) {
+            add_user($_POST["new_user"],$_POST["password"] $connection);
+        }
+    }*/
+
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,27 +27,43 @@
 
 
         <?php include("navbar.php"); ?>
-
-            <div class=userdiv>
-            <form >
+        <p><?php
+                if (!$user) {
+                    echo "Du är inte inloggad";
+                } else {
+                    echo "Du är inloggad som ". $user["CustomerID"];
+                }
+            ?>
+        </p>
+        <div class=userdiv>
+            <form action="User.php" method="post">
                 <fieldset>
-                <legend>Skapa en användare!</legend>    
-                    
-                Username:<br>
-                <input type="text" name="username" value="BastionMain">
-                <br>
-                Password: <br>
-                <input type="text" name="password" value="titta inte i adressfält">
-                <br>
-                <input type="submit" value="Submit">
+                    <legend>Logga in!</legend>
 
-        
-        
-        
-            </fieldset>
+                    Username:<br>
+                    <input type="text" name="name">
+                    <br>
+                    Password: <br>
+                    <input type="text" name="password">
+                    <br>
+                    <input type="submit" value="skicka">
+                </fieldset>
             </form>
         </div>
+        <div class=userdiv>
+            <form action="User.php" method="post">
+                <fieldset>
+                    <legend>Skapa en användare!</legend>
 
-
+                    Username:<br>
+                    <input type="text" name="new_user">
+                    <br>
+                    Password: <br>
+                    <input type="text" name="password">
+                    <br>
+                    <input type="submit" value="skicka">
+                </fieldset>
+            </form>
+        </div>
     </body>
 </html>

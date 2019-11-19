@@ -14,7 +14,8 @@
 
         //$connection->query("INSERT INTO Accounts VALUES ('".$_POST["name"]."','".crypt($_POST["password"],'$6$rounds=5000$'.rand(1000000,1000000000).'$')."')");
         //echo "data has been sent!";
-        //validate_password($_POST["name"], $_POST["password"], $connection);
+        validate_password($_POST["name"], $_POST["password"], $connection);
+        //add_user($_POST["name"], $_POST["password"], $connection);
     }
 ?>
 <!DOCTYPE html>
