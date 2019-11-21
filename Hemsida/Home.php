@@ -1,13 +1,3 @@
-<?php
-    include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
-    include ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-
-/* Den här koden kollar om det finns en person inloggad */
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $connection = server_connect();
-    $user = validate_user($_POST["username"],$_POST["password"],$connection);
-}
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +6,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </head>
 
     <body >
-        <?php include_navbar($user); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT']."/navbar.php"); ?>
 
         <div id="container">
 

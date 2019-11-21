@@ -1,28 +1,3 @@
-<?php
-include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
-include ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $connection = server_connect();
-    $user = validate_user($_POST["username"],$_POST["password"],$connection);
-
-    if (!$user) {
-        redirect("login_page.php");
-    }
-
-    /*
-    if ($_POST["new_user"]) {
-        $user = find_user($_POST["new_user"] $connection);
-        if (!$user) {
-            add_user($_POST["new_user"],$_POST["password"] $connection);
-        }
-    }*/
-
-} else {
-    redirect("login_page.php");
-}
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,30 +9,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <body >
 
 
-        <?php include_navbar($user); ?>
-        <p>Välkommen till kundsidan</p>
-        <p><?php
-                if (!$user) {
-                    echo "Du är inte inloggad";
-                } else {
-                    echo "Du är inloggad som ". $user["CustomerID"];
-                }
-            ?>
-        </p>
-        <!--<div class=userdiv>
-            <form action="User.php" method="post">
-                <fieldset>
-                    <legend>Skapa en användare!</legend>
+        <?php include("navbar.php"); ?>
 
-                    Username:<br>
-                    <input type="text" name="new_user">
-                    <br>
-                    Password: <br>
-                    <input type="text" name="password">
-                    <br>
-                    <input type="submit" value="skicka">
-                </fieldset>
+            <div class=userdiv>
+            <form >
+                <fieldset>
+                <legend>Logga in!</legend>    
+                    
+                Username:<br>
+                <input type="text" name="Användarnamn" value="">
+                <br>
+                Password: <br>
+                <input type="text" name="Lösenord" value="">
+                <br>
+                <input type="submit" value="Logga in">
+                <br>
+                <input type="submit" value="Skapa konto?">
+                    
+        
+        
+        
+            </fieldset>
             </form>
-        </div> -->
+        </div>
+
+
     </body>
 </html>

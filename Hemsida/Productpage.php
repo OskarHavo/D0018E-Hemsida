@@ -1,9 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 include_once ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-include_once($_SERVER['DOCUMENT_ROOT']."/user_scripts.php");
 /*
-
     * Bra info
     * https://www.w3schools.com/php/php_superglobals_get.asp
     */
@@ -14,16 +12,6 @@ if ($productID == NULL) {
     redirect("404.html");
 }
 $conn = server_connect();
-
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $user = validate_user($_POST["username"],$_POST["password"],$conn);
-    echo $user["CustomerID"];
-}
-
-
-
-
 $query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID'");
 $query_result2 = $conn->query("SELECT * FROM Comments WHERE ProductNumber='$productID'");
 
@@ -55,11 +43,11 @@ $conn->close();
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <?php include_navbar($user); ?>
+        <?php include("navbar.php"); ?>
         <div id="container">
 
             <div id="product">
-                <img src="Bilder/1001.jpg">
+                <img src="Bilder/<?php echo $product["ProductNumber"]?>.png">
             </div>
             <table class="responsive-table">
                 <caption><?php echo $product["ProductName"];?></caption>
@@ -116,7 +104,6 @@ $conn->close();
                             <th scope="row"><?php echo $comment["CustomerID"];?></th>
                             <td><?php echo $comment["rating"];?></td>
                             <td><?php echo $comment["Comment"];?></td>
-                            <td>  reportbutton  </td>
                         </tr>
 
                     </tbody>
