@@ -382,8 +382,8 @@ body{
 
 }
 .userdiv legend{
+    width: 100%;
     font-size: 80px;
-    padding-left: 42%;
     text-align: center; 
     color: #bd0b0b;
 }

@@ -29,6 +29,25 @@ if (!$product) {
     redirect("404.html");
 }
 
+
+
+#function create_comments()
+#    if ($query_result2->num_rows > 0) {
+ #       while($comment = $query_result2->fetch_assoc()){
+  #          echo "<tr>";
+
+   #         echo "<td>" . $comment["CustomerID"] . $comment["rating"] . $comment["Comment"]"</td>"
+        
+    #    echo "</tr>";
+#    }
+ #   }
+#
+
+
+
+
+
+
 /* Rensa resultatet och koppla från servern. */
 mysqli_free_result($query_result);
 mysqli_free_result($query_result2);
@@ -101,9 +120,10 @@ $conn->close();
                 <table class="review-table">
                     <tbody>
                         <tr>
-                            <th scope="row"><?php echo $comment["CustomerID"];?></th>
-                            <td><?php echo $comment["rating"];?></td>
-                            <td><?php echo $comment["Comment"];?></td>
+                            
+                               <!--create_comments(); -->  
+                        
+
                         </tr>
 
                     </tbody>
