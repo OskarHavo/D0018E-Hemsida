@@ -76,6 +76,7 @@ function validate_user($username, $password, $connection) {
 
     if ($crypto_password == $user["Password"]) {
         //echo "password is correct";
+        $user["Password"] = $password;
         return $user;
     } /*else {
         echo "password did not match <br>";
@@ -84,4 +85,9 @@ function validate_user($username, $password, $connection) {
     }*/
     return NULL;
 }
+
+function include_navbar($user) {
+    include("navbar.php");
+}
+
 ?>

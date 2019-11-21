@@ -1,16 +1,11 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
-include ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/user_scripts.php");
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $connection = server_connect();
-    $user = validate_user($_POST["username"],$_POST["password"],$connection);
-
-    if (!$user) {
-        redirect("login_page.php");
-    }
-
+    echo $_POST["username"]."<br>".$_POST["password"];
     /*
     if ($_POST["new_user"]) {
         $user = find_user($_POST["new_user"] $connection);
@@ -19,8 +14,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }*/
 
-} else {
-    redirect("login_page.php");
 }
 ?>
 <!DOCTYPE html>
@@ -35,7 +28,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
         <?php include_navbar($user); ?>
-        <p>Välkommen till kundsidan</p>
         <p><?php
                 if (!$user) {
                     echo "Du är inte inloggad";
@@ -44,6 +36,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
             ?>
         </p>
+        <div class=userdiv>
+            <form action="User.php" method="post">
+                <fieldset>
+                    <legend>Logga in!</legend>
+
+                    Username:<br>
+                    <input type="text" name="username">
+                    <br>
+                    Password: <br>
+                    <input type="text" name="password">
+                    <br>
+                    <input type="submit" value="skicka">
+                </fieldset>
+            </form>
+        </div>
+        <a href="Home.php">Saknar konto? klicka här!</a>
         <!--<div class=userdiv>
             <form action="User.php" method="post">
                 <fieldset>
