@@ -120,6 +120,7 @@ body{
 /* BAR */
 .shoppingcart{
     float: left;
+    width: 5%;
     background-blend-mode:normal;
     background-color: #ff8800;
 
@@ -375,10 +376,13 @@ body{
 
 .logindiv{
     width: 100%;
+    padding-top: 2%;
+    padding-bottom: 5%;
     float: left;
     margin-top: 60px;
     font-size: 60px;
     text-align: center; 
+    background-color: #c7c4c1;
 
 }
 .logindiv legend{
@@ -417,6 +421,10 @@ body{
     background-color: #ffac4d;
     color: black;
     font-size: 24px;
+    
+     overflow-x: scroll;
+    white-space: nowrap;
+
 }
 
 .userpage-table td{
