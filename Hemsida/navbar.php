@@ -42,13 +42,14 @@ function create_category() {
         <ul>
 
             <li>
-                <a href="Home.php">Hem</a>
+                <!--<a href="Home.php">Hem</a> -->
+                <a href="Userpage.php">Hem</a>
             </li>
             <?php
                 create_category();
             ?>
             <li>
-                <a href="User.php">Användarsida</a>
+                <a href="Login.php">Användarsida</a>
             </li>
             <div class="shoppingcart">
                 <li>
