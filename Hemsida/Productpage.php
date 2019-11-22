@@ -30,18 +30,27 @@ if (!$product) {
 }
 
 
+function create_commenttable() {
 
-#function create_comments()
-#    if ($query_result2->num_rows > 0) {
- #       while($comment = $query_result2->fetch_assoc()){
-  #          echo "<tr>";
+    $connection = server_connect();
+    $comments = $connection->query("SELECT * FROM Comments;");
+    while ($comment = $comments->fetch_assoc()) {
+        echo "<th>";
+        create_comments($connection->query("SELECT * FROM Comments WHERE ProoductType=ProductNumber='$productID'"));
+        echo "</th>";
+    }
+    $connection ->close();
+}
+function create_comments()
+    if ($comment_query->num_rows > 0) {
+        while($comment = $comment_query->fetch_assoc()){
+           
 
-   #         echo "<td>" . $comment["CustomerID"] . $comment["rating"] . $comment["Comment"]"</td>"
-        
-    #    echo "</tr>";
-#    }
- #   }
-#
+            echo "<td> . $comment["CustomerID"] . $comment["rating"] . $comment["Comment"]</td>"
+
+        }
+    }
+
 
 
 
@@ -120,9 +129,7 @@ $conn->close();
                 <table class="review-table">
                     <tbody>
                         <tr>
-                            
-                               <!--create_comments(); -->  
-                        
+                            create_comments();  
 
                         </tr>
 
