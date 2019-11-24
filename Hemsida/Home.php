@@ -1,12 +1,17 @@
+<?php
+include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
+         <script src="javascripts.js"></script>
     </head>
 
-    <body >
-        <?php include_once($_SERVER['DOCUMENT_ROOT']."/navbar.php"); ?>
+    <body onload="setSessionID('<?php echo fetchSessionID();?>')">
+
+        <?php include_once($_SERVER['DOCUMENT_ROOT']."/navbar.php");?>
 
         <div id="container">
 

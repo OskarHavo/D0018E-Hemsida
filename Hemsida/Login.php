@@ -11,25 +11,24 @@
 
         <?php include("navbar.php"); ?>
 
-            <div class=logindiv>
-            <form >
+        <div class=logindiv>
+            <form action="Userpage.php" method="post">
                 <fieldset>
-                <legend>Logga in!</legend>    
-                    
-                Username:<br>
-                <input type="text" name="Användarnamn" value="">
-                <br>
-                Password: <br>
-                <input type="text" name="Lösenord" value="">
-                <br>
-                <input type="submit" value="Logga in">
-                <br>
-                <input type="submit" value="Skapa konto?">
-                    
-        
-        
-        
-            </fieldset>
+                    <legend>Logga in!</legend>
+
+                    Username:<br>
+                    <input type="text" name="username">
+                    <br>
+                    Password: <br>
+                    <input type="text" name="password">
+                    <br>
+                    <input type="submit" value="Logga in">
+                </fieldset>
+            </form>
+            <form action="join.php" method="post">
+                <fieldset>
+                    <input type="submit" value="Skapa konto?">
+                </fieldset>
             </form>
         </div>
 

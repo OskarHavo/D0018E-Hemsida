@@ -76,8 +76,10 @@ function validate_user($username, $password, $connection) {
 
     if ($crypto_password == $user["Password"]) {
         //echo "password is correct";
-        $user["Password"] = $password;
-        return $user;
+        //$user["Password"] = $password;
+        $key = create_session_ID();
+        $connection->query("INSERT INTO Sessions values('".$key."','".$user["CustomerID"]."');");
+        return $key;
     } /*else {
         echo "password did not match <br>";
         echo "password: ". $crypto_password."<br>";
@@ -86,8 +88,57 @@ function validate_user($username, $password, $connection) {
     return NULL;
 }
 
+function logout($connection) {
+    $session = $_GET["sessionID"];
+    //$query = $connection->query("SELECT SessionID FROM Sessions WHERE SessionID=". $session);
+
+    //if ($query->fetch_assoc() == $session) {
+    $connection->query("DELETE FROM Sessions WHERE SessionID='". $session."';");
+    //}
+}
+
 function include_navbar($user) {
     include("navbar.php");
+}
+
+function create_session_ID() {
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $charsize = strlen($chars);
+    $result = "";
+    for ($i = 0; $i < 128; $i++) {
+        $result .= $chars[rand(0, $charsize-1)];
+    }
+    return $result;
+}
+
+
+function fetchSessionID() {
+    $session = $_GET["sessionID"];
+    if (!$session) {
+
+        //return create_session_ID();
+        return ;
+    } else {
+        return verifySession($session);
+    }
+}
+
+/*
+* Här behöver definitivt ett prepared statement.
+* Den här funktionen måste köras innan vi t.ex.
+* Lägger till saker i varukorgen.
+*/
+function verifySession($session) {
+    $connection = server_connect();
+    $query = $connection->query("SELECT CustomerID FROM Sessions WHERE SessionID='$session';");
+    $connection->close();
+    if ($query->num_rows == 1) {
+        return $session;
+    } else {
+        // throw error;
+        return NULL;
+    }
+
 }
 
 ?>

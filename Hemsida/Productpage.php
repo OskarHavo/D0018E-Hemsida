@@ -13,7 +13,7 @@ if ($productID == NULL) {
 }
 $conn = server_connect();
 
-$comment_query = $conn->query("SELECT * FROM Comments;");
+$comment_query = $conn->query("SELECT * FROM Comments WHERE ProductNumber='$productID';");
 $query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID';");
 
 
@@ -79,8 +79,9 @@ $conn->close();
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
+        <script src="javascripts.js"></script>
     </head>
-    <body>
+    <body onload="setSessionID('<?php echo fetchSessionID();?>')">
         <?php include("navbar.php"); ?>
         <div id="container">
 
