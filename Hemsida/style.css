@@ -276,24 +276,9 @@ body{
     text-align: center;
     font-size: 55px;
     font-weight: bold;
-    background-color: #bd0b0b;
+    background-color: #ff8800;
     
 }
-
-.leavereviewdiv{
-    width: 100%;
-    height:60px;
-    float: left;
-    text-align: center;
-    font-size: 40px;
-    font-weight: bold;
-    background-color: #ff8800;
-
-}
-.leavreviewdiv:active{
-
-}
-
 
 #reviewdiv{
     width: 100%;

@@ -148,13 +148,13 @@ function closeForm() {
 <!--  https://www.w3schools.com/howto/howto_js_popup_form.asp -->
             <div class="form-popup" id="recensioner">
                 <form action="/bytnamnpåmig.php" class="form-container">
-                    <h1>Skriv din recension här!</h1>
+                    <h1>Skriv din recension!</h1>
 
                     <label for="kommentar"><b>Kommentar:</b></label>
                     <input type="text" placeholder="Lämna din kommentar" name="kommentar" required>
 
                     <label for="betyg"><b>Betyg:</b></label>
-                    <input type="text" placeholder="Ge ett betyg mellan 1-5" name="betyg" required>
+                    <input type="text" placeholder="Ge ett betyg mellan 1-10" name="betyg" required>
 
                     <button type="submit" class="knapp">Skicka in din recension!</button>
                     <button type="button" class="knapp avbryt" onclick="closeForm()">Stäng formuläret</button>
