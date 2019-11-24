@@ -12,16 +12,17 @@ if ($productID == NULL) {
     redirect("404.html");
 }
 $conn = server_connect();
-$query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID'");
-$query_result2 = $conn->query("SELECT * FROM Comments WHERE ProductNumber='$productID'");
 
-if (!$query_result) {
+$comment_query = $conn->query("SELECT * FROM Comments;");
+$query_result = $conn->query("SELECT * FROM Products WHERE ProductNumber='$productID';");
+
+
+if (!$query_result || !$comment_query) {
     echo "Error executing query: (" . $conn->errno . ") " . $conn->error;
 }
 
 /* Hämta produkten vi söker från resultatet */
 $product = $query_result->fetch_assoc();
-$comment = $query_result2->fetch_assoc();
 
 // Kolla om produkten faktiskt finns
 if (!$product) {
@@ -30,6 +31,10 @@ if (!$product) {
 }
 
 
+/*
+* Ville du ha den här? Ta bort den annars.
+*/
+/*
 function create_commenttable() {
 
     $connection = server_connect();
@@ -40,21 +45,26 @@ function create_commenttable() {
         echo "</th>";
     }
     $connection ->close();
-}
-function create_comments()
+}*/
+//
+
+/*
+* Var det så här du ville ha det?
+* Tips: För att komma åt en variabel i en funktion
+* som skapades utanför funktionen så måste man
+* antingen skicka med variabeln som ett argument
+* eller skriva "global <variabel>" inuti funktionen.
+*/
+function create_comments() {
+    global $comment_query;
     if ($comment_query->num_rows > 0) {
         while($comment = $comment_query->fetch_assoc()){
-           
-
-            echo "<td> . $comment["CustomerID"] . $comment["rating"] . $comment["Comment"]</td>"
-
+            echo "<tr><td>".$comment["CustomerID"]. "</td><td>".$comment["Comment"]." </td><td>Betyg: ".$comment["rating"] ."</td></tr>";
         }
+    } else {
+        echo "Var först med att lägga en kommentar.";
     }
-
-
-
-
-
+}
 
 
 /* Rensa resultatet och koppla från servern. */
@@ -128,11 +138,9 @@ $conn->close();
 
                 <table class="review-table">
                     <tbody>
-                        <tr>
-                            create_comments();  
-
-                        </tr>
-
+                        <?php
+                            create_comments();
+                        ?>
                     </tbody>
                 </table>
 
