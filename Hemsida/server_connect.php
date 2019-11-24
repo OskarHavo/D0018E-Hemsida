@@ -65,26 +65,24 @@ function validate_user($username, $password, $connection) {
 
 
     $user = find_user($username, $connection);
-
     if (!$user) {
         return NULL;
     }
-
-    //$hash_password = $query_result->fetch_assoc();
     $salt = explode("$", $user["Password"])[3];
     $crypto_password = crypt($password,'$6$rounds=5000$'.$salt.'$');
 
     if ($crypto_password == $user["Password"]) {
-        //echo "password is correct";
-        //$user["Password"] = $password;
+        $key_query = $connection->query("SELECT * FROM Sessions WHERE CustomerID='".$user["CustomerID"]."';");
+        if ($key_query->num_rows > 0) {
+            $key = $key_query->fetch_assoc();
+            return $key["SessionID"];
+        }
+
         $key = create_session_ID();
         $connection->query("INSERT INTO Sessions values('".$key."','".$user["CustomerID"]."');");
+
         return $key;
-    } /*else {
-        echo "password did not match <br>";
-        echo "password: ". $crypto_password."<br>";
-        echo "hash: ". $user["Password"];
-    }*/
+    }
     return NULL;
 }
 

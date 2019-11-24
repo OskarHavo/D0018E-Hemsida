@@ -17,7 +17,7 @@
         if(!$session) {
             redirect("Login.php");
         } else if (!verifySession($session)) {
-            redirect("Home.php");
+            redirect("Login.php");
         }
     }
 
@@ -68,7 +68,7 @@
                     </tr>
 
                 </tbody>
-            </table>  
+            </table>
             <div id="userpagelowerdiv">
                 <p><a href="logout.php">Logga ut</a></p>
             </div>
