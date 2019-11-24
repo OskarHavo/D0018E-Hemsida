@@ -31,40 +31,22 @@ if (!$product) {
 }
 
 
-/*
-* Ville du ha den här? Ta bort den annars.
-*/
-/*
-function create_commenttable() {
-
-    $connection = server_connect();
-    $comments = $connection->query("SELECT * FROM Comments;");
-    while ($comment = $comments->fetch_assoc()) {
-        echo "<th>";
-        create_comments($connection->query("SELECT * FROM Comments WHERE ProoductType=ProductNumber='$productID'"));
-        echo "</th>";
-    }
-    $connection ->close();
-}*/
-//
-
-/*
-* Var det så här du ville ha det?
-* Tips: För att komma åt en variabel i en funktion
-* som skapades utanför funktionen så måste man
-* antingen skicka med variabeln som ett argument
-* eller skriva "global <variabel>" inuti funktionen.
-*/
-function create_comments() {
-    global $comment_query;
-    if ($comment_query->num_rows > 0) {
-        while($comment = $comment_query->fetch_assoc()){
-            echo "<tr><td>".$comment["CustomerID"]. "</td><td>".$comment["Comment"]." </td><td>Betyg: ".$comment["rating"] ."</td></tr>";
+/* Var det så här du ville ha det?
+    * Tips: För att komma åt en variabel i en funktion
+        * som skapades utanför funktionen så måste man
+        * antingen skicka med variabeln som ett argument
+        * eller skriva "global <variabel>" inuti funktionen.
+        */
+        function create_comments() {
+        global $comment_query;
+        if ($comment_query->num_rows > 0) {
+            while($comment = $comment_query->fetch_assoc()){
+                echo "<tr><td>".$comment["CustomerID"]. "</td><td>".$comment["Comment"]." </td><td>Betyg: ".$comment["rating"] ."</td></tr>";
+            }
+        } else {
+            echo "Var först med att lägga en kommentar!";
         }
-    } else {
-        echo "Var först med att lägga en kommentar.";
     }
-}
 
 
 /* Rensa resultatet och koppla från servern. */
@@ -109,12 +91,12 @@ $conn->close();
                         <th scope="row">Lagerstatus</th>
                         <td>
                             <?php
-    if ($product["InStock"] == 0) {
-        echo "Slut i lager";
-    } else {
-        echo $product["InStock"]. " st";
-    }
-                            ?>
+                                    if ($product["InStock"] == 0) {
+                                            echo "Slut i lager";
+                                    } else {
+                                        echo $product["InStock"]. " st";
+                                    }
+                                ?>
                         </td>
                     </tr>
                     <tr>
@@ -130,12 +112,13 @@ $conn->close();
                 <p> Köp </p>
 
             </div>
+            <div class = reviewdivrubric>
+                <p>  Recensioner  </p>
+            </div>    
             <div class = "leavereviewdiv">
                 <p> Tryck här för att lämna en recension!  </p>
             </div>
             <div id = "reviewdiv">
-
-                <p>  Recensioner  </p>
 
                 <table class="review-table">
                     <tbody>

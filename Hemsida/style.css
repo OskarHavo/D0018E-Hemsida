@@ -268,11 +268,22 @@ body{
 
 }
 
+.reviewdivrubric{
+    width: 100%;
+    height:80px;
+    float: left;
+    margin-top: 60px;
+    text-align: center;
+    font-size: 55px;
+    font-weight: bold;
+    background-color: #bd0b0b;
+    
+}
+
 .leavereviewdiv{
     width: 100%;
     height:60px;
     float: left;
-    margin-top: 60px;
     text-align: center;
     font-size: 40px;
     font-weight: bold;
@@ -280,7 +291,6 @@ body{
 
 }
 .leavreviewdiv:active{
-    background-color:  blue;
 
 }
 
@@ -291,7 +301,7 @@ body{
     float: left;
     margin-bottom: 60px;
     text-align: center;
-    font-size: 40px;
+    font-size: 28px;
     font-weight: bold;
     background-color: #ffac4d;
 
