@@ -115,6 +115,7 @@ CustomerID varchar(16) NOT NULL,
 OrderID int NOT NULL,
 ProductNumber int NOT NULL,
 Comment text(2048) NOT NULL,
+Rating int NOT NULL,
 CONSTRAINT
 FOREIGN KEY(OrderID, ProductNumber) REFERENCES Orders(OrderID, ProductNumber),
 CONSTRAINT
