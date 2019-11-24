@@ -123,3 +123,12 @@ CONSTRAINT
 PRIMARY KEY (ProductNumber, CustomerID)
 );
 
+CREATE TABLE Sessions (
+SessionID varchar(128) NOT NULL,
+CustomerID varchar(16) NOT NULL,
+CONSTRAINT
+FOREIGN KEY(CustomerID) REFERENCES Accounts(CustomerID),
+CONSTRAINT
+PRIMARY KEY (SessionID)
+);
+
