@@ -31,22 +31,24 @@ if (!$product) {
 }
 
 
-/* Var det så här du ville ha det?
-    * Tips: För att komma åt en variabel i en funktion
+/*      * Tips: För att komma åt en variabel i en funktion
         * som skapades utanför funktionen så måste man
         * antingen skicka med variabeln som ett argument
         * eller skriva "global <variabel>" inuti funktionen.
         */
-        function create_comments() {
-        global $comment_query;
-        if ($comment_query->num_rows > 0) {
-            while($comment = $comment_query->fetch_assoc()){
-                echo "<tr><td>".$comment["CustomerID"]. "</td><td>".$comment["Comment"]." </td><td>Betyg: ".$comment["rating"] ."</td></tr>";
-            }
-        } else {
-            echo "Var först med att lägga en kommentar!";
+function create_comments() {
+    global $comment_query;
+    if ($comment_query->num_rows > 0) {
+        while($comment = $comment_query->fetch_assoc()){
+            echo "<tr><td>".$comment["CustomerID"]. "</td><td>".$comment["Comment"]." </td><td>Betyg: ".$comment["rating"] ."</td></tr>";
         }
+    } else {
+        echo "Var först med att lägga en recension!";
     }
+}
+
+
+
 
 
 /* Rensa resultatet och koppla från servern. */
@@ -55,6 +57,19 @@ mysqli_free_result($query_result2);
 $conn->close();
 
 ?>
+<script>
+    
+    function openForm() {
+  document.getElementById("recensioner").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("recensioner").style.display = "none";
+} 
+
+    
+    
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -91,12 +106,12 @@ $conn->close();
                         <th scope="row">Lagerstatus</th>
                         <td>
                             <?php
-                                    if ($product["InStock"] == 0) {
-                                            echo "Slut i lager";
-                                    } else {
-                                        echo $product["InStock"]. " st";
-                                    }
-                                ?>
+    if ($product["InStock"] == 0) {
+        echo "Slut i lager";
+    } else {
+        echo $product["InStock"]. " st";
+    }
+                            ?>
                         </td>
                     </tr>
                     <tr>
@@ -115,21 +130,37 @@ $conn->close();
             <div class = reviewdivrubric>
                 <p>  Recensioner  </p>
             </div>    
-            <div class = "leavereviewdiv">
-                <p> Tryck här för att lämna en recension!  </p>
-            </div>
+            
+            <button class="lämnaKommentarKnapp" onclick="openForm()">Lämna en recension!</button>
+            
             <div id = "reviewdiv">
 
                 <table class="review-table">
                     <tbody>
                         <?php
-                            create_comments();
+    create_comments();
                         ?>
                     </tbody>
                 </table>
 
 
             </div>
+<!--  https://www.w3schools.com/howto/howto_js_popup_form.asp -->
+            <div class="form-popup" id="recensioner">
+                <form action="/bytnamnpåmig.php" class="form-container">
+                    <h1>Skriv din recension här!</h1>
+
+                    <label for="kommentar"><b>Kommentar:</b></label>
+                    <input type="text" placeholder="Lämna din kommentar" name="kommentar" required>
+
+                    <label for="betyg"><b>Betyg:</b></label>
+                    <input type="text" placeholder="Ge ett betyg mellan 1-5" name="betyg" required>
+
+                    <button type="submit" class="knapp">Skicka in din recension!</button>
+                    <button type="button" class="knapp avbryt" onclick="closeForm()">Stäng formuläret</button>
+                </form>
+            </div> 
+
         </div>
     </body>
 </html>
