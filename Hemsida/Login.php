@@ -20,15 +20,15 @@
                     <input type="text" name="username">
                     <br>
                     Password: <br>
-                    <input type="text" name="password">
+                    <input type="password" name="password">
                     <br>
-                    <input type="submit" value="Logga in">
+                    <input type="submit" class="knapp" value="Logga in">
                 </fieldset>
             </form>
             <form action="join.php" method="post">
                 <fieldset>
 
-                    <input type="submit" value="Skapa konto?">
+                    <input type="submit" class="knapp" value="Skapa konto?">
                 </fieldset>
             </form>
         </div>

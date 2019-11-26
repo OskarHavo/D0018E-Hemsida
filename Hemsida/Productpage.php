@@ -123,11 +123,11 @@ function closeForm() {
                 </tbody>
             </table>
 
-            <div class= "buyButton">
-
-                <a href="buy.php<?php
+            <div class= "buyButton" onclick="buy.php<?php
                                 echo '?ProductNumber='.$product["ProductNumber"];
-                         ?>">Köp</a>
+                         ?>">
+
+                <a>Köp</a>
 
             </div>
             <div class = reviewdivrubric>

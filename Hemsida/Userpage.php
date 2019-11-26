@@ -69,7 +69,7 @@
 
                 </tbody>
             </table>
-            <div id="userpagelowerdiv">
+            <div id="logoutdiv">
                 <p><a href="logout.php">Logga ut</a></p>
             </div>
 

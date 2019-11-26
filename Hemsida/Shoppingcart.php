@@ -53,7 +53,7 @@ $cart_query = $conn->query("SELECT * FROM Orders WHERE CustomerID='robin';");
                 <p>Total Summa = x kr</p>
             </div>
             <div id="shoppingcartcheckoutbutton">
-                <p>Check out</p>
+                <p>Slutför köp</p>
             </div>
 
 

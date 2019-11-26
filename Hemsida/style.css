@@ -10,6 +10,15 @@
     vertical-align: baseline;
 
 }
+a{
+    /* Motverkar href underline och färg */
+    color: inherit;
+    text-decoration: none;
+    
+    /* Gör hela divven klickbar (href) */
+    display: block;
+    
+}
 
 
 /* Index.html */
@@ -262,8 +271,8 @@ body{
 
 
 }
-.buyButton:active{
-    background-color:  blue;
+.buyButton:hover{
+    background-color:  #1f8800;
 
 
 }
@@ -343,7 +352,7 @@ body{
     text-align: center;
 }
 #shoppingcartcheckout{
-    width: 80%;
+    width: 65%;
     float: left;
     height: 80px;
     background-color: #ff8800;
@@ -353,7 +362,7 @@ body{
 
 }
 #shoppingcartcheckoutbutton{
-    width: 20%;
+    width: 35%;
     float: left;
     height: 80px;
     background-color: #bd0b0b;
@@ -428,7 +437,7 @@ body{
     padding-top: 10px;
     text-align: center;
 }
-#userpagelowerdiv{
+#logoutdiv{
     width: 100%;
     float: left;
     height: 80px;
@@ -436,9 +445,11 @@ body{
     font-size: 60px;
     font-weight: bold;
     text-align: center; 
+    
+    
+    
 
 }
-
 
 
 
@@ -517,17 +528,22 @@ body{
   background-color: #ddd;
   outline: none;
 }
-
+.knapp{
+  margin-top: 10px;    
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+    opacity: 0.8;
+    
+}
 
 .form-container .knapp {
   background-color: #329114;
   color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
+  margin-top: 0px;  
   width: 100%;
   margin-bottom:10px;
-  opacity: 0.8;
+  
 }
 
 
@@ -535,7 +551,7 @@ body{
   background-color: #bd0b0b;
 }
 
-.form-container .knapp:hover, .lämnaKommentarKnapp:hover {
+.knapp:hover, .lämnaKommentarKnapp:hover {
   opacity: 1;
 }
 /* Recensions formulär  */
