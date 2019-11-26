@@ -83,9 +83,8 @@ PRIMARY KEY (OrderID, ProductNumber)
 
 CREATE TABLE Shoppingcarts (
 OrderID int NOT NULL UNIQUE,
-CustomerID varchar(16) NOT NULL,
 CONSTRAINT fk_order_id
-FOREIGN KEY (OrderID) REFERENCES Orders (OrderID)
+FOREIGN KEY (OrderID) REFERENCES OrderNumbers (OrderID)
 ON DELETE CASCADE
 ON UPDATE RESTRICT,
 CONSTRAINT PK_shoppingcart
