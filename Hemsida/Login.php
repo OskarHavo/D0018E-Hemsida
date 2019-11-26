@@ -27,6 +27,7 @@
             </form>
             <form action="join.php" method="post">
                 <fieldset>
+
                     <input type="submit" value="Skapa konto?">
                 </fieldset>
             </form>

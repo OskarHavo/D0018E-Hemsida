@@ -117,7 +117,10 @@ function fetchSessionID() {
         //return create_session_ID();
         return ;
     } else {
-        return verifySession($session);
+        if (verifySession($session)) {
+            return $session;
+        }
+        return;
     }
 }
 
@@ -131,7 +134,7 @@ function verifySession($session) {
     $query = $connection->query("SELECT CustomerID FROM Sessions WHERE SessionID='$session';");
     $connection->close();
     if ($query->num_rows == 1) {
-        return $session;
+        return ($query->fetch_assoc())["CustomerID"];
     } else {
         // throw error;
         return NULL;

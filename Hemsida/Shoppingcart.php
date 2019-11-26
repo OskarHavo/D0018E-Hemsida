@@ -31,9 +31,10 @@ $cart_query = $conn->query("SELECT * FROM Orders WHERE CustomerID='robin';");
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
+        <script src="javascripts.js"></script>
     </head>
 
-    <body >
+    <body onload="setSessionID('<?php echo fetchSessionID();?>')">
         <?php include("navbar.php"); ?>
         <div id="container">
 

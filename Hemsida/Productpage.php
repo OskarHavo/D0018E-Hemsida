@@ -1,6 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 include_once ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
+
 /*
     * Bra info
     * https://www.w3schools.com/php/php_superglobals_get.asp
@@ -124,7 +125,9 @@ function closeForm() {
 
             <div class= "buyButton">
 
-                <p> Köp </p>
+                <a href="buy.php<?php
+                                echo '?ProductNumber='.$product["ProductNumber"];
+                         ?>">Köp</a>
 
             </div>
             <div class = reviewdivrubric>
