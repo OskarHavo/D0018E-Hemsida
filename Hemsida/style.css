@@ -481,7 +481,7 @@ body{
 /* Blockstorlek */
 
 /* Recensions formulär  */
-.lämnaKommentarKnapp {
+.openFormButton {
   background-color: #555;
   color: white;
   padding: 16px 20px;
@@ -498,7 +498,6 @@ body{
   display: none;
   position: fixed;
   bottom: 0;
-  right: 15px;
   border: 3px solid #f1f1f1;
   z-index: 9;
 }
@@ -516,7 +515,7 @@ body{
 }
 
 .form-container input[type=text] {
-  width: 100%;
+  width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
@@ -533,7 +532,7 @@ body{
   padding: 16px 20px;
   border: none;
   cursor: pointer;
-    opacity: 0.8;
+  opacity: 0.8;
     
 }
 
@@ -553,6 +552,20 @@ body{
 
 .knapp:hover, .lämnaKommentarKnapp:hover {
   opacity: 1;
+}
+#recensionform{
+    right: 15px; 
+    
+}
+
+#userformbutton{
+    /*                        */
+    left: 28px;
+    
+}
+#userform{
+    left: 15px;
+    
 }
 /* Recensions formulär  */
 }

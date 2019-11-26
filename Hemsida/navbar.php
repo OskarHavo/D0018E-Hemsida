@@ -1,6 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-
+include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 
 /* Den här koden skapar knapparna till alla kategorier och
 *  lägger till alla produkterna. allt detta görs dessutom automatiskt,
@@ -28,6 +28,20 @@ function create_category() {
     $connection ->close();
 }
 ?>
+<script>
+
+    function openForm() {
+        document.getElementById("userform").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("userform").style.display = "none";
+    } 
+
+
+
+</script>
+
 <div id="container">
     <div id="header">
 
@@ -46,7 +60,7 @@ function create_category() {
                 <a href="Home.php">Hem</a>
             </li>
             <?php
-                create_category();
+            create_category();
             ?>
             <li>
                 <a href="Userpage.php">Användarsida</a>
@@ -63,8 +77,17 @@ function create_category() {
 
         </ul>
 
-
+        <button class="openFormButton" id="userformbutton" onclick="openForm()">Du är inloggad som användare XXX</button>
     </div>
+
+    <div class="form-popup" id="userform">
+        <form action="logout.php" class="form-container">
+            <h1>Du är inloggad som XXX</h1>
+
+            <button type="submit" class="knapp">Logga ut!</button>
+            <button type="button" class="knapp avbryt" onclick="closeForm()">Avbryt</button>
+        </form>
+    </div> 
 
 
 

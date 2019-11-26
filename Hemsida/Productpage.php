@@ -60,12 +60,12 @@ $conn->close();
 ?>
 <script>
     
-    function openForm() {
-  document.getElementById("recensioner").style.display = "block";
+    function openFormReview() {
+  document.getElementById("recensionform").style.display = "block";
 }
 
-function closeForm() {
-  document.getElementById("recensioner").style.display = "none";
+function closeFormReview() {
+  document.getElementById("recensionform").style.display = "none";
 } 
 
     
@@ -134,7 +134,7 @@ function closeForm() {
                 <p>  Recensioner  </p>
             </div>    
             
-            <button class="lämnaKommentarKnapp" onclick="openForm()">Lämna en recension!</button>
+            <button class="openFormButton" onclick="openFormReview()">Lämna en recension!</button>
             
             <div id = "reviewdiv">
 
@@ -149,7 +149,7 @@ function closeForm() {
 
             </div>
 <!--  https://www.w3schools.com/howto/howto_js_popup_form.asp -->
-            <div class="form-popup" id="recensioner">
+            <div class="form-popup" id="recensionform">
                 <form action="/bytnamnpåmig.php" class="form-container">
                     <h1>Skriv din recension!</h1>
 
@@ -160,7 +160,7 @@ function closeForm() {
                     <input type="text" placeholder="Ge ett betyg mellan 1-10" name="betyg" required>
 
                     <button type="submit" class="knapp">Skicka in din recension!</button>
-                    <button type="button" class="knapp avbryt" onclick="closeForm()">Stäng formuläret</button>
+                    <button type="button" class="knapp avbryt" onclick="closeFormReview()">Stäng formuläret</button>
                 </form>
             </div> 
 
