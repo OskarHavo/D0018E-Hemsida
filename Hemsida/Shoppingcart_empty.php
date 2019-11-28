@@ -22,12 +22,12 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
         <div id="container">
 
             <div id="shoppingcartrubric">
-                <p>Min Shoppingvagn<br></p>
+                <p>Din shoppingvagn är tom<br></p>
 
-                <!-- Fixa formatering på den här tack -->
-                <!-- Det blir lite konstigt om vi ska visa en shoppingcart när man inte har en,
-                    så därför gjorde jag den här sidan. -->
-                <a href="/Home.php">Fortsätt handla</a>
+                <div id="emptyshoppingcartdiv">
+  
+                <a href="/Home.php">Fortsätt handla genom att klicka på texten här!</a>
+                </div>
             </div>
         </div>
 
