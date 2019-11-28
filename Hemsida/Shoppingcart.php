@@ -1,25 +1,53 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
-include_once ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 
-$conn = server_connect();
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $connection = server_connect();
+        $key = validate_user($_POST["username"],$_POST["password"],$connection);
+        $connection->close();
 
-$cart_query = $conn->query("SELECT * FROM Orders WHERE CustomerID='robin';");
-
-/*
-    Vi behöver få produkternas pris och namn också
-*/
- function create_cart() {
-        global $cart_query;
-        if ($cart_query->num_rows > 0) {
-            while($cart = $cart_query->fetch_assoc()){
-                echo "<tr><td>".$cart["ProductNumber"]. "</td><td>".$cart["ProductNumber"]." </td><td>Betyg: ".$cart["ProductNumber"] ."</td></tr>";
-            }
+        if (!$key) {
+            redirect("Login.php");
         } else {
-            echo "denna ska ner";
+            redirect("Userpage.php?sessionID=".$key);
+        }
+        $connection->close();
+        $user = $_POST["username"];
+    } else {
+        $session = $_GET["sessionID"];
+        if(!$session) {
+            redirect("Login.php");
+        } else if (!($user = verifySession($session))) {
+            redirect("Login.php");
         }
     }
 
+
+
+
+
+
+function create_cart() {
+    global $user;
+    $conn = server_connect();
+    $cart_query = $conn->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$user."';");
+    if ($cart_query->num_rows > 0) {
+        $cartID = $cart_query->fetch_assoc();
+
+        $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$user."' AND Orders.Price IS NULL;
+");
+        if ($shoppingcart->num_rows > 0) {
+            while ($product = $shoppingcart->fetch_assoc() ) {
+                echo "<tr>";
+                echo    "<td>".$product["ProductName"]."</td>";
+                echo    "<td>".$product["Quantity"]."</td>";
+                echo    "<td>".$product["ProductPrice"]."</td>";
+                echo "</tr>";
+            }
+        }
+    }
+}
 
 ?>
 
