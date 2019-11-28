@@ -24,12 +24,12 @@ function create_cart() {
     $conn = server_connect();
 
 
-    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$user."' AND Orders.Price IS NULL AND Orders.OrderID='".$cartID["ShoppingcartID"]."';
+    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$user."' AND Orders.Price IS NULL AND Orders.OrderID='".$cartID["ShoppingcartID"]."';
 ");
     if ($shoppingcart->num_rows > 0) {
         while ($product = $shoppingcart->fetch_assoc() ) {
-            if ($product["InStock"] - $product["Quantity"] <= 0) {
-                $can_buy = 0;
+            if (($product["InStock"] - $product["Quantity"]) < 0) {
+                $can_buy = FALSE;
             }
             $product_cost = $product["ProductPrice"]*$product["Quantity"];
             $total_cost = $total_cost + $product_cost;
