@@ -142,4 +142,42 @@ function verifySession($session) {
 
 }
 
+function get_session_username() {
+    $session = $_GET["sessionID"];
+    if (!$session) {
+
+        //return create_session_ID();
+        return ;
+    } else {
+        if ($sess = verifySession($session)) {
+            return $sess;
+        }
+        return;
+    }
+}
+
+function require_login() {
+    global $user;
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $connection = server_connect();
+        $key = validate_user($_POST["username"],$_POST["password"],$connection);
+        $connection->close();
+
+        if (!$key) {
+            redirect("Login.php");
+        } else {
+            redirect("Userpage.php?sessionID=".$key);
+        }
+        $user = $_POST["username"];
+        $connection->close();
+    } else {
+        $session = $_GET["sessionID"];
+        if(!$session) {
+            redirect("Login.php");
+        } else if (!($user = verifySession($session))) {
+            redirect("Login.php");
+        }
+    }
+}
+
 ?>

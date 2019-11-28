@@ -32,6 +32,7 @@
         $connection->query("INSERT INTO Orders(OrderID, Quantity,ProductNumber,CustomerID) VALUES('".$cartID["cartID"]."','1','".$productID."','".$user."');");
         echo "I'm not updating properly";
     }
+
     $connection->close();
 
 

@@ -132,9 +132,22 @@ function closeFormReview() {
             </div> -->
             <div class= "buyButton">
 
-                <a href="buy.php<?php
-                                echo '?ProductNumber='.$product["ProductNumber"];
-                         ?>">Köp</a>
+                <a <?php
+
+                   if ($product["InStock"] > 0) {
+                       echo "href='buy.php";
+                       echo "?ProductNumber=".$product["ProductNumber"]."'";
+                   } else {
+                       echo "href='#'";
+                   }
+
+                    ?>> <?php
+                        if ($product["InStock"] > 0) {
+                            echo "Köp";
+                        } else {
+                            echo "Slut i lager";
+                        }
+                    ?></a>
 
             </div>
             <div class = reviewdivrubric>
