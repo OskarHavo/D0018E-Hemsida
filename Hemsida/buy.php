@@ -6,7 +6,7 @@
     $productID = $_GET["ProductNumber"];
     $user = verifySession($_GET["sessionID"]);
     if (!$user) {
-        redirect($_SERVER['HTTP_REFERER']);
+        redirect("Login.php");
     }
     $connection = server_connect();
     $has_shoppingcart = $connection->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$user."';");
@@ -29,7 +29,7 @@
         $product = $product_query->fetch_assoc();
         $connection->query("UPDATE Orders SET Quantity='".($product["Quantity"]+1)."' WHERE OrderID='".$cartID["cartID"]."' AND ProductNumber='".$productID."';");
     } else {
-        $connection->query("INSERT INTO Orders VALUES('".$cartID["cartID"]."','1','".$productID."','".$user."');");
+        $connection->query("INSERT INTO Orders(OrderID, Quantity,ProductNumber,CustomerID) VALUES('".$cartID["cartID"]."','1','".$productID."','".$user."');");
         echo "I'm not updating properly";
     }
     $connection->close();

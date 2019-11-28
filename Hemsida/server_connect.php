@@ -117,7 +117,7 @@ function fetchSessionID() {
         //return create_session_ID();
         return ;
     } else {
-        if (verifySession($session)) {
+        if ($sess = verifySession($session)) {
             return $session;
         }
         return;

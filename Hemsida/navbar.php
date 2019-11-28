@@ -21,7 +21,7 @@ function create_category() {
     $connection = server_connect();
     $categories = $connection->query("SELECT * FROM ProductCategories;");
     while ($category = $categories->fetch_assoc()) {
-        echo "<li><a>".$category["sitelink"]."</a><ul>";
+        echo "<li><p>".$category["sitelink"]."</p><ul>";    /* Det här är "Bläckpenna" */
         create_product($connection->query("SELECT * FROM Products where ProductType='".$category["Category"]."';"));
         echo "</ul></li>";
     }

@@ -12,33 +12,35 @@
         } else {
             redirect("Userpage.php?sessionID=".$key);
         }
+        $connection->close();
+        $user = $_POST["username"];
     } else {
         $session = $_GET["sessionID"];
         if(!$session) {
             redirect("Login.php");
-        } else if (!verifySession($session)) {
+        } else if (!($user = verifySession($session))) {
             redirect("Login.php");
         }
     }
 
-    /*
-    if (!$session) {
-        $connection = server_connect();
-        $key = validate_user($_POST["username"],$_POST["password"],$connection);
-        $connection->close();
-
-
-        if (!$key) {
-            redirect("Login.php");
-        } else {
-            redirect("Userpage.php?sessionID=".$key);
+function create_orders() {
+    global $user;
+    $connection = server_connect();
+    $query = $connection->query("SELECT OrderID, Quantity, ProductNumber, Price FROM Orders WHERE CustomerID='robin' AND Price IS NOT NULL;");
+    if ($query->num_rows > 0) {
+        while ($row = $query->fetch_assoc()) {
+            /* Det här är bara en massa <tr> med <td> inuti. */
+            echo "<tr>";
+            echo    "<td>".$row["OrderID"]."</td>";
+            echo    "<td>".$row["ProductNumber"]."</td>";
+            echo    "<td>".$row["Quantity"]."</td>";
+            echo    "<td>".$row["Price"].":-</td>";
+            echo "</tr>";
         }
-
     }
-    else if (!verifySession($session)) {
-        //redirect("404.php");
 
-    }*/
+    $connection->close();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,11 +65,15 @@
                 <tbody>
                     <tr>
                         <th scope="row">Ordernummer</th>
-                        <td>Produkter<td>
+                        <td>Produktnummer<td>
+                        <td>antal</td>
                         <td>Pris</td>
                     </tr>
-
+                    <?php
+                        create_orders();
+                    ?>
                 </tbody>
+
             </table>
             <div id="logoutdiv">
                 <p><a href="logout.php">Logga ut</a></p>
