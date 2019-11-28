@@ -85,7 +85,6 @@ $user = get_session_username();
         if ($user) {
             include_once($_SERVER['DOCUMENT_ROOT']."/userform.php");
         }
-
     ?>
     </div>
 

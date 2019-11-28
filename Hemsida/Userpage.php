@@ -39,7 +39,7 @@ function create_orders() {
           <div id="container">
 
             <div id="userpagerubric">
-                <p>Mina Ordrar(#0003)</p>
+                <p>Mina Ordrar(<?php echo $user;?>)</p>
             </div>
 
             <table class="userpage-table">
