@@ -2,12 +2,31 @@
     include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
     include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 
-    require_login();
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $connection = server_connect();
+        $key = validate_user($_POST["username"],$_POST["password"],$connection);
+        $connection->close();
+
+        if (!$key) {
+            redirect("Login.php");
+        } else {
+            redirect("Userpage.php?sessionID=".$key);
+        }
+        $connection->close();
+        $user = $_POST["username"];
+    } else {
+        $session = $_GET["sessionID"];
+        if(!$session) {
+            redirect("Login.php");
+        } else if (!($user = verifySession($session))) {
+            redirect("Login.php");
+        }
+    }
 
 function create_orders() {
     global $user;
     $connection = server_connect();
-    $query = $connection->query("SELECT OrderID, Quantity, ProductNumber, Price FROM Orders WHERE CustomerID='".$user."' AND Price IS NOT NULL;");
+    $query = $connection->query("SELECT OrderID, Quantity, ProductNumber, Price FROM Orders WHERE CustomerID='robin' AND Price IS NOT NULL;");
     if ($query->num_rows > 0) {
         while ($row = $query->fetch_assoc()) {
             /* Det här är bara en massa <tr> med <td> inuti. */
@@ -42,6 +61,7 @@ function create_orders() {
                 <p>Mina Ordrar(<?php echo $user;?>)</p>
             </div>
 
+            <div id="orderdiv">
             <table class="userpage-table">
                 <tbody>
                     <tr>
@@ -56,9 +76,10 @@ function create_orders() {
                 </tbody>
 
             </table>
-            <!-- <div id="logoutdiv">
+            </div>
+            <div id="logoutdiv">
                 <p><a href="logout.php">Logga ut</a></p>
-            </div> -->
+            </div>
 
 
         </div>
