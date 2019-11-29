@@ -366,7 +366,7 @@ body{
     text-align: center;
 }
 #shoppingcartcheckout{
-    width: 65%;
+    width: 50%;
     float: left;
     height: 80px;
     background-color: #ff8800;
@@ -375,26 +375,29 @@ body{
     text-align: center; 
 
 }
+#emptyshoppingcartdiv{
+    width: 20%;
+    height: 80px;
+    float: left;
+    text-align: center;
+    font-size: 52px;
+    font-weight: bold;
+    background-color: #bd0b0b;
+    
+}
+
 #shoppingcartcheckoutbutton{
-    width: 35%;
+    width: 30%;
     float: left;
     height: 80px;
-    background-color: #bd0b0b;
+    background-color: #ff8800;
     font-size: 60px;
     font-weight: bold;
     text-align: center; 
 
 }
-#emptyshoppingcartdiv{
-    width: 100%;
-    height: 300px;
-    float: left;
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-    background-color: #ffac4d;
-    padding-top: 20px; 
-    
+#shoppingcartcheckoutbutton:hover{
+     background-color:  #1f8800;
 }
 
 
@@ -409,8 +412,9 @@ body{
 .logindiv{
     width: 100%;
     padding-top: 2%;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
     float: left;
+    margin-bottom: 60px;
     margin-top: 60px;
     font-size: 60px;
     text-align: center; 
@@ -424,8 +428,6 @@ body{
     color: #bd0b0b;
 }
 
-.logindiv form submit{
-}
 
 /* Login.html */
 
@@ -473,23 +475,91 @@ body{
     text-align: center;
 }
 #logoutdiv{
-    width: 100%;
+    width: 60%;
+    float: left;
+    height: 80px;
+    background-color: #ff8800;
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center; 
+
+}
+.cancelaccountdiv{
+    width: 40%;
     float: left;
     height: 80px;
     background-color: #bd0b0b;
     font-size: 60px;
     font-weight: bold;
     text-align: center; 
+    cursor: pointer;
     
-    
-    
-
 }
 
 
 
 
 /* Userpage.php */
+
+
+
+/* Admin.php */
+
+.adminpagerubric{
+    
+    width: 100%;
+    float: left;
+    height: 80px;
+    background-color: #ff8800;
+    margin-top: 60px;
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center; 
+    
+}
+
+.adminpagediv{
+    width: 100%;
+    float: left;
+    height: 900px;
+    margin-bottom: 80px;
+    background-color: #ffac4d;
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center; 
+    
+       
+}
+
+.adminform{
+    padding-top: 40px;
+    width: 100%;
+    font-size: 40px;
+    
+}
+.adminform input[type=text]{
+    width: 20%;
+    font-size: 45px;
+}
+.adminform legend{
+    width: 100%;
+    text-align: center;
+    font-size: 45px;
+}
+.adminpagediv a{
+    padding-top: 20px;
+    color: #bd0b0b;
+    
+}
+
+
+
+
+
+/* Admin.php */
+
+
+
 
 
 
@@ -528,6 +598,7 @@ body{
   bottom: 23px;
   right: 28px;
   width: 280px;
+    z-index: 1000;
 }
 
 .form-popup {

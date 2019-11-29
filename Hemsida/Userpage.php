@@ -42,6 +42,11 @@
 	    $connection->close();
 	}
 	?>
+<script>
+function taBortKontoKnapp() {
+  confirm("Är du säker att du vill ta bort ditt konto?");
+}
+</script>
 	<!DOCTYPE html>
 	<html>
 	    <head>
@@ -59,6 +64,7 @@
 	
 	            <div id="userpagerubric">
 	                <p>Mina Ordrar (<?php echo $user;?>)</p>
+                    
 	            </div>
 	
 	            <div id="orderdiv">
@@ -80,6 +86,10 @@
 	            <div id="logoutdiv">
 	                <p><a href="logout.php">Logga ut</a></p>
 	            </div>
+                <button class="cancelaccountdiv" onclick="taBortKontoKnapp()">
+                  
+                  <p>Ta bort konto</p>
+                  </button>
 	
 	
 	        </div>

@@ -7,7 +7,7 @@ function user_join() {
         $connection = server_connect();
 
         if (strlen($_POST["username"]) < 5) {
-            echo "<p>välj ett användarnamn med minst 5 karaktärer.</p>";
+            echo "<p>Välj ett användarnamn med minst 5 karaktärer.</p>";
             return;
         }
 
@@ -16,7 +16,7 @@ function user_join() {
             $key = validate_user($_POST["username"], $_POST["password"], $connection);
             redirect("Userpage.php?sessionID=".$key);
         } else {
-            echo "<p>användaren är tagen</p>";
+            echo "<p>Användaren är tagen</p>";
         }
 
 
@@ -43,7 +43,7 @@ if ($_POST["action"] == "register") {
         <?php include("navbar.php"); ?>
 
         <div class=logindiv>
-            <form action="join.php" method="post">
+            <form action="Userpage.php" method="post">
                 <fieldset>
                     <legend>Skapa konto!</legend>
 
@@ -51,10 +51,10 @@ if ($_POST["action"] == "register") {
                     <input type="text" name="username">
                     <br>
                     Password: <br>
-                    <input type="text" name="password">
+                    <input type="password" name="password">
                     <br>
                     <input type="hidden" name="action" value="register">
-                    <input type="submit" value="Skapa konto">
+                    <input type="submit" class = "knapp" value="Skapa konto">
                 </fieldset>
             </form>
         </div>

@@ -83,6 +83,10 @@ function create_cart() {
             <div id="shoppingcartcheckout">
                 <p>Total Summa: <?php echo $total_cost;?> :-</p>
             </div>
+            <div id="emptyshoppingcartdiv">
+                <p>Töm vagnen 
+                </p>
+            </div>
             <div id="shoppingcartcheckoutbutton">
                 <a <?php
                    if ($can_buy) {
