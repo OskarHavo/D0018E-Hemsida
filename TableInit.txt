@@ -26,6 +26,9 @@ CREATE TABLE Accounts (
 	Password varchar(112) NOT NULL
 );
 
+INSERT INTO Accounts(CustomerID,Password) VALUES('admin','admin');
+
+
 /* 
 *  Här har vi produktnummer, ordernummer och kundID.
 *  För att se alla ordernummer som en person har, skriv:
