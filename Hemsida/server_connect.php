@@ -126,6 +126,20 @@ function fetchSessionID() {
     }
 }
 
+function fetchSessionUser() {
+    $session = $_GET["sessionID"];
+    if (!$session) {
+
+        //return create_session_ID();
+        return ;
+    } else {
+        if ($sess = verifySession($session)) {
+            return $sess;
+        }
+        return;
+    }
+}
+
 /*
 * Här behöver definitivt ett prepared statement.
 * Den här funktionen måste köras innan vi t.ex.

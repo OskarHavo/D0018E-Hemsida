@@ -56,7 +56,7 @@ function create_comments() {
 mysqli_free_result($query_result);
 mysqli_free_result($query_result2);
 $conn->close();
-
+$user = fetchSessionUser();
 ?>
 <script>
     
