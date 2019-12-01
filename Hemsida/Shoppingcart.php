@@ -3,7 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 require_login();
 $conn = server_connect();
-$cart_query = $conn->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$user."';");
+$cart_query = $conn->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$user["CustomerID"]."';");
 $cartID = $cart_query->fetch_assoc();
 if ($cartID["ShoppingcartID"] == NULL) {
     redirect("Shoppingcart_empty.php?sessionID=". $_GET["sessionID"]);
@@ -19,7 +19,7 @@ function create_cart() {
     //$cart_query = $conn->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$user."';");
     global $cart_query;
     $conn = server_connect();
-    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$user."' AND Orders.Price IS NULL AND Orders.OrderID='".$cartID["ShoppingcartID"]."';
+    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$user["CustomerID"]."' AND Orders.Price IS NULL AND Orders.OrderID='".$cartID["ShoppingcartID"]."';
 ");
     if ($shoppingcart->num_rows > 0) {
         while ($product = $shoppingcart->fetch_assoc() ) {

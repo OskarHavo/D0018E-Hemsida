@@ -3,6 +3,9 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
     include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 
     require_login();
+    if ($user["root"]) {
+        redirect("Admin.php?sessionID=".$user["SessionID"]);
+    }
 
     $orderID = $_GET["OrderID"];
     $user = get_session_username();

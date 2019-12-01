@@ -38,7 +38,9 @@ function add_user($username, $password, $connection) {
     }
     $salt = rand(1000000,1000000000);
     $crypto_password = crypt($password,'$6$rounds=5000$'.$salt.'$');
-    $connection->query("INSERT INTO Accounts VALUES('".$username."','".$crypto_password."');");
+
+    $connection->query("insert into Accounts(CustomerID, Password) values('".$username."','".$crypto_password."');");
+    # "INSERT INTO Accounts(CustomerID,Password) VALUES('".$username."','".$crypto_password."');"
 }
 
 /*
@@ -131,10 +133,10 @@ function fetchSessionID() {
 */
 function verifySession($session) {
     $connection = server_connect();
-    $query = $connection->query("SELECT CustomerID FROM Sessions WHERE SessionID='$session';");
+    $query = $connection->query("SELECT Sessions.SessionID,Sessions.CustomerID,Accounts.root FROM Sessions INNER JOIN Accounts ON Accounts.CustomerID=Sessions.CustomerID WHERE SessionID='".$session."'");
     $connection->close();
     if ($query->num_rows == 1) {
-        return ($query->fetch_assoc())["CustomerID"];
+        return $query->fetch_assoc();
     } else {
         // throw error;
         return NULL;
@@ -168,7 +170,7 @@ function require_login() {
         } else {
             redirect("Userpage.php?sessionID=".$key);
         }
-        $user = $_POST["username"];
+        $user = verifySession($session);
         $connection->close();
     } else {
         $session = $_GET["sessionID"];

@@ -1,7 +1,7 @@
-<button class="openFormButton" id="userformbutton" onclick="openForm()">Du är inloggad som <?php echo $user;?></button>
+<button class="openFormButton" id="userformbutton" onclick="openForm()">Du är inloggad som <?php echo $user["CustomerID"];?></button>
 <div class="form-popup" id="userform">
         <form action="logout.php" class="form-container">
-            <h1>Du är inloggad som <?php echo $user;?></h1>
+            <h1>Du är inloggad som <?php echo $user["CustomerID"];?></h1>
 
             <button type="submit" class="knapp">Logga ut!</button>
             <button type="button" class="knapp avbryt" onclick="closeForm()">Avbryt</button>

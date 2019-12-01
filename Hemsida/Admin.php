@@ -3,6 +3,9 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
     include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 
     require_login();
+    if (!$user["root"]) {
+        redirect("logout.php");
+    }
 
 ?>
 
@@ -15,7 +18,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
         <script src="javascripts.js"></script>
     </head>
 
-    <body>
+    <body onload="setSessionID('<?php echo fetchSessionID();?>')">
         <?php include("navbar.php"); ?>
         <div id="container">
             

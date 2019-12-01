@@ -43,7 +43,7 @@ if ($_POST["action"] == "register") {
         <?php include("navbar.php"); ?>
 
         <div class=logindiv>
-            <form action="Userpage.php" method="post">
+            <form action="join.php" method="post">
                 <fieldset>
                     <legend>Skapa konto!</legend>
 

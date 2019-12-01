@@ -14,7 +14,6 @@ include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
         <?php include_once($_SERVER['DOCUMENT_ROOT']."/navbar.php");?>
 
         <div id="container">
-
             <div class ="blocks">
                 <div class="block image1">
                     <div class="layer"></div>

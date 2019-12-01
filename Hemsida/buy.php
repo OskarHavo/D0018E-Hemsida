@@ -4,7 +4,7 @@
     include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
     include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
     $productID = $_GET["ProductNumber"];
-    $user = verifySession($_GET["sessionID"]);
+    $user = verifySession($_GET["sessionID"])["CustomerID"];
     if (!$user) {
         redirect("Login.php");
     }
