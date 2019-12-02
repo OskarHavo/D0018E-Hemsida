@@ -270,18 +270,12 @@ body{
     font-size: 40px;
     font-weight: bold;
     background-color:  #bd0b0b;
-    opacity: 0.9;
 
 
 }
 .buyButton a{
     padding-top: 7px;
     
-}
-.buyButton:hover{
-    #background-color:  #1f8800;
-    opacity: 1;
-
 }
 .selectAmountdiv{
     width: 10%;
@@ -332,7 +326,6 @@ body{
     font-size: 28px;
     font-weight: bold;
     background-color: #ffac4d;
-
     overflow-x: scroll;
     white-space: nowrap;
 
@@ -428,8 +421,25 @@ body{
     text-align: center; 
 
 }
-#shoppingcartcheckoutbutton:hover{
-     background-color:  #1f8800;
+
+.plussknapp{
+    background-image: url(Bilder/plusknapp.png);
+    background-size: 100%;
+    background-repeat:no-repeat;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding-top: 12px;
+    
+}
+.minusknapp{
+    background-image: url(Bilder/minusknapp.png);
+    background-size: 100%;
+    background-repeat:no-repeat;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding-top: 12px;
 }
 
 
@@ -592,7 +602,19 @@ body{
 
 
 
+/* Liteknapp */
+.liteknapp{
+    opacity: 0.9;
+    cursor: pointer;
+    
+}
+.liteknapp:hover{
+    opacity: 1;
+    
+}
 
+
+/* Liteknapp */
 
 
 

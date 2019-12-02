@@ -41,9 +41,11 @@ function create_cart() {
                 */
                 echo " bgcolor='#FF0000'";
             }
-            echo ">";
+            echo "<tr>";
             echo    "<td>".$product["ProductName"]."</td>";
+            echo    "<td>"."<button class='plussknapp' type='submit' name='knapp'>"."</button>"."</td>";
             echo    "<td>".$product["Quantity"]."</td>";
+            echo    "<td>"."<button class='minusknapp' type='submit' name='knapp'>"."</button>"."</td>";
             echo    "<td>".$product_cost.":-</td>";
             echo "</tr>";
         }
@@ -71,28 +73,28 @@ function create_cart() {
                 <p>Min Shoppingvagn</p>
             </div>
             <div id="shoppingcartdiv">
-            <table class="shoppingcart-table">
-                <tbody>
-                    <tr><td>Produkt</td><td>Antal</td><td>Kostnad</td></tr>
-                    <?php
+                <table class="shoppingcart-table">
+                    <tbody>
+                        <tr><td>Produkt</td><td> </td><td>Antal</td><td> </td><td>Kostnad</td></tr>
+                        <?php
                         create_cart();
-                    ?>
-                    <!-- Här kan du göra en test med delete knapp, tack.-->
-                    <!-- <tr>
-                        <td>
-                        </td>
-                    </tr> -->
-                </tbody>
-            </table>
+                        ?>
+                        <!-- Här kan du göra en test med delete knapp, tack.-->
+                        <!-- <tr>
+<td>
+</td>
+</tr> -->
+                    </tbody>
+                </table>
             </div>
             <div id="shoppingcartcheckout">
                 <p>Total Summa: <?php echo $total_cost;?> :-</p>
             </div>
-            <div id="emptyshoppingcartdiv">
+            <div class= "liteknapp" id="emptyshoppingcartdiv">
                 <p>Töm vagnen 
                 </p>
             </div>
-            <div id="shoppingcartcheckoutbutton">
+            <div class= "liteknapp" id="shoppingcartcheckoutbutton">
                 <a <?php
                    if ($can_buy) {
                        echo "href='checkout.php";
@@ -111,7 +113,9 @@ function create_cart() {
                     }
                     ?></a>
             </div>
-
+              <!--  <button class="plussknapp" type="submit" name="knapp"></button>
+                <button class="minusknapp" type="submit" name="knapp"></button>
+                -->
 
         </div>
 

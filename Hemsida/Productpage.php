@@ -141,7 +141,7 @@ function greenBuyColor(){
                 <a>Köp</a>
 
             </div> -->
-            <div class= "buyButton">
+            <div class= "buyButton liteknapp">
 
                 <a <?php
 
