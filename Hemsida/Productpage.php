@@ -66,7 +66,20 @@ $conn->close();
 function closeFormReview() {
   document.getElementById("recensionform").style.display = "none";
 } 
-
+    
+    
+// In progress kod för att färgen ska ändras på ett condition
+var div = document.getElementById( 'buyButton' );    
+div.onmouseover = function(){
+    this.style.backgroundColor = 'green';
+}    
+div.onmouseout = function(){
+    this.style.backgroundColor = 'red';
+}  
+    
+    
+function greenBuyColor(){
+}
     
     
 </script>
@@ -148,6 +161,17 @@ function closeFormReview() {
                     ?></a>
 
             </div>
+            <div class ="selectAmountdiv">
+                <form class="amountform" action="/bytnamnpåmig.php" class="form-container">
+                    <label for="antal"><b>Antal</b></label>
+                    <input type="text" placeholder="1" name="antaltext" required>
+                    
+                </form>
+            
+            </div>
+            
+            
+            
             <div class = reviewdivrubric>
                 <p>  Recensioner  </p>
             </div>    
