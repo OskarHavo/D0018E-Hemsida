@@ -9,11 +9,31 @@ if (!isset($_SESSION["CustomerID"])) {
 $conn = server_connect();
 $cart_query = $conn->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$_SESSION["CustomerID"]."';");
 $cartID = $cart_query->fetch_assoc();
-$conn->close();
+
+
 if ($cartID["ShoppingcartID"] == NULL) {
+    $conn->close();
     redirect("Shoppingcart_empty.php");
 }
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if ($_POST["addproduct"]) {
+        $query = $conn->query("SELECT Quantity FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["addproduct"]."';");
+        $quantity = ($query->fetch_assoc())["Quantity"]+1;
+        //$quantity = 1;
+        $conn->query("UPDATE Orders SET Quantity='".$quantity."' WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["addproduct"]."';");
+    } else if ($_POST["subtractproduct"]) {
+        $query = $conn->query("SELECT Quantity FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["subtractproduct"]."';");
+        $quantity = ($query->fetch_assoc())["Quantity"]-1;
+        //$quantity = 1;
+        if ($quantity == 0) {
+            $conn->query("DELETE FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["subtractproduct"]."';");
+        } else {
+            $conn->query("UPDATE Orders SET Quantity='".$quantity."' WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["subtractproduct"]."';");
+        }
 
+    }
+}
+$conn->close();
 function create_cart() {
     //global $user;
     global $cartID;
@@ -24,7 +44,7 @@ function create_cart() {
     //$cart_query = $conn->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$user."';");
     global $cart_query;
     $conn = server_connect();
-    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.Price IS NULL AND Orders.OrderID='".$cartID["ShoppingcartID"]."';
+    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock,Products.ProductNumber FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.Price IS NULL AND Orders.OrderID='".$cartID["ShoppingcartID"]."';
 ");
     if ($shoppingcart->num_rows > 0) {
         while ($product = $shoppingcart->fetch_assoc() ) {
@@ -43,12 +63,15 @@ function create_cart() {
             }
             echo "<tr>";
             echo    "<td>".$product["ProductName"]."</td>";
-            echo    "<td>"."<button class='plussknapp' type='submit' name='knapp'>"."</button>"."</td>";
+            echo    "<td>"."<form action='Shoppingcart.php' method='post'> <button  class='plussknapp' type='submit' name='addproduct' value='".$product["ProductNumber"]."'>"."</button></form>"."</td>";
             echo    "<td>".$product["Quantity"]."</td>";
-            echo    "<td>"."<button class='minusknapp' type='submit' name='knapp'>"."</button>"."</td>";
+            echo    "<td>"."<form action='Shoppingcart.php' method='post'> <button class='minusknapp' type='submit' name='subtractproduct' value='".$product["ProductNumber"]."'>"."</button></form>"."</td>";
             echo    "<td>".$product_cost.":-</td>";
             echo "</tr>";
         }
+    } else {
+        $conn->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
+        $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$cartID["ShoppingcartID"]."';");
     }
     $conn->close();
 }

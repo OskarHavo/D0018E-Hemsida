@@ -37,7 +37,7 @@
         $connection->query("UPDATE Orders SET Quantity='".($product["Quantity"]+1)."' WHERE OrderID='".$cartID["cartID"]."' AND ProductNumber='".$productID."';");
     } else {
         $connection->query("INSERT INTO Orders(OrderID, Quantity,ProductNumber,CustomerID) VALUES('".$cartID["cartID"]."','1','".$productID."','".$_SESSION["CustomerID"]."');");
-        echo "I'm not updating properly";
+        //echo "I'm not updating properly";
     }
 
     $connection->close();
