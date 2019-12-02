@@ -24,16 +24,9 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
     }
 ?>
 <script>
-
-    function openAdminForm() {
-  document.getElementById("recensionform").style.display = "block";
+function taBortKontoKnapp() {
+  confirm("Är du säker att du vill göra detta?");
 }
-
-function closeAdminForm() {
-  document.getElementById("recensionform").style.display = "none";
-}
-
-
 
 </script>
 
@@ -64,7 +57,7 @@ function closeAdminForm() {
                     <input type="text" name="username">
                     
                    
-                    <input type="submit" class="knapp" value="Radera användare">
+                    <input type="submit" class="knapp" value="Radera användare"onclick="taBortKontoKnapp()">
                 </fieldset>
                      </form>
                 
@@ -76,7 +69,7 @@ function closeAdminForm() {
                     <input type="text" name="username">
                 
                    
-                    <input type="submit" class="knapp" value="Radera order">
+                    <input type="submit" class="knapp" value="Radera order" onclick="taBortKontoKnapp()">
                 </fieldset>
                     
                     
@@ -91,7 +84,7 @@ function closeAdminForm() {
                     CustomerID:
                     <input type="text" name="password">
                    
-                    <input type="submit" class="knapp" value="Radera kommentar">
+                    <input type="submit" class="knapp" value="Radera kommentar" onclick="taBortKontoKnapp()">
                 </fieldset>
                     
                     </form>
@@ -105,27 +98,14 @@ function closeAdminForm() {
                     Lagersaldo:
                     <input type="text" name="password">
                     <input type="hidden" name="function" value="remove_product">
-                    <input type="submit" class="knapp" value="Ändra saldo">
-                    <button class="adminformbutton" type="button" onclick="openAdminForm()">Lämna en recension!</button>
+                    <input type="submit" class="knapp" value="Ändra saldo" onclick="taBortKontoKnapp()">
+                 
                 </fieldset>
                      </form>
             <a href="phpmyadmin">Länk till PHPmyAdmin</a>
             </div>
             
-            <div class="form-popup" id="recensionform">
-                <form action="/bytnamnpåmig.php" class="form-container">
-                    <h1>Skriv din recension!</h1>
-
-                    <label for="kommentar"><b>Kommentar:</b></label>
-                    <input type="text" placeholder="Lämna din kommentar" name="kommentar" required>
-
-                    <label for="betyg"><b>Betyg:</b></label>
-                    <input type="text" placeholder="Ge ett betyg mellan 1-10" name="betyg" required>
-
-                    <button type="submit" class="knapp">Skicka in din recension!</button>
-                    <button type="button" class="knapp avbryt" onclick="closeAdminForm()">Stäng formuläret</button>
-                </form>
-            </div>
+            
         </div>
 
     </body>

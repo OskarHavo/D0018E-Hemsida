@@ -113,7 +113,7 @@ function create_cart() {
             <div id="shoppingcartcheckout">
                 <p>Total Summa: <?php echo $total_cost;?> :-</p>
             </div>
-            <div class= "liteknapp" id="emptyshoppingcartdiv">
+            <div class= "liteknapp" id="tömshoppingcartdiv">
                 <p>Töm vagnen 
                 </p>
             </div>
