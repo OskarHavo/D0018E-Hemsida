@@ -1,16 +1,16 @@
 <?php
+session_start();
 include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-$user = fetchSessionUser();
+//$user = fetchSessionUser();
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
-         <script src="javascripts.js"></script>
     </head>
 
-    <body onload="setSessionID('<?php echo fetchSessionID();?>')">
+    <body>
 
         <?php include_once($_SERVER['DOCUMENT_ROOT']."/navbar.php");?>
 

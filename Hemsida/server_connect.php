@@ -1,10 +1,11 @@
 <?php
+
 /* Källa: https://stackoverflow.com/questions/768431/how-do-i-make-a-redirect-in-php*/
-function server_connect() {
+function server_connect($username="customer",$password="") {
     // Koppla upp mot servern.
     $servername = "localhost";
-    $username = "customer";
-    $password = "";
+    //$username = "customer";
+    //$password = "";
     $dbname = "website";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -74,125 +75,33 @@ function validate_user($username, $password, $connection) {
     $crypto_password = crypt($password,'$6$rounds=5000$'.$salt.'$');
 
     if ($crypto_password == $user["Password"]) {
-        $key_query = $connection->query("SELECT * FROM Sessions WHERE CustomerID='".$user["CustomerID"]."';");
-        if ($key_query->num_rows > 0) {
-            $key = $key_query->fetch_assoc();
-            return $key["SessionID"];
-        }
-
-        $key = create_session_ID();
-        $connection->query("INSERT INTO Sessions values('".$key."','".$user["CustomerID"]."');");
-
-        return $key;
+        return $user;
     }
     return NULL;
 }
 
-function logout($connection) {
-    $session = $_GET["sessionID"];
-    //$query = $connection->query("SELECT SessionID FROM Sessions WHERE SessionID=". $session);
-
-    //if ($query->fetch_assoc() == $session) {
-    $connection->query("DELETE FROM Sessions WHERE SessionID='". $session."';");
-    //}
-}
-
-function include_navbar($user) {
-    include("navbar.php");
-}
-
-function create_session_ID() {
-    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    $charsize = strlen($chars);
-    $result = "";
-    for ($i = 0; $i < 128; $i++) {
-        $result .= $chars[rand(0, $charsize-1)];
-    }
-    return $result;
-}
 
 
-function fetchSessionID() {
-    $session = $_GET["sessionID"];
-    if (!$session) {
-
-        //return create_session_ID();
-        return ;
-    } else {
-        if ($sess = verifySession($session)) {
-            return $session;
-        }
-        return;
-    }
-}
-
-function fetchSessionUser() {
-    $session = $_GET["sessionID"];
-    if (!$session) {
-
-        //return create_session_ID();
-        return ;
-    } else {
-        if ($sess = verifySession($session)) {
-            return $sess;
-        }
-        return;
-    }
-}
-
-/*
-* Här behöver definitivt ett prepared statement.
-* Den här funktionen måste köras innan vi t.ex.
-* Lägger till saker i varukorgen.
-*/
-function verifySession($session) {
-    $connection = server_connect();
-    $query = $connection->query("SELECT Sessions.SessionID,Sessions.CustomerID,Accounts.root FROM Sessions INNER JOIN Accounts ON Accounts.CustomerID=Sessions.CustomerID WHERE SessionID='".$session."'");
-    $connection->close();
-    if ($query->num_rows == 1) {
-        return $query->fetch_assoc();
-    } else {
-        // throw error;
-        return NULL;
-    }
-
-}
-
-function get_session_username() {
-    $session = $_GET["sessionID"];
-    if (!$session) {
-
-        //return create_session_ID();
-        return ;
-    } else {
-        if ($sess = verifySession($session)) {
-            return $sess;
-        }
-        return;
-    }
-}
-
-function require_login() {
-    global $user;
+function login() {
+    //global $user;
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $connection = server_connect();
-        $key = validate_user($_POST["username"],$_POST["password"],$connection);
-        $connection->close();
+        $user = validate_user($_POST["username"],$_POST["password"],$connection);
 
-        if (!$key) {
+        //$connection->close();
+
+        if (!$user) {
             redirect("Login.php");
-        } else {
-            redirect("Userpage.php?sessionID=".$key);
         }
-        $user = verifySession($session);
+        $_SESSION["CustomerID"] = $_POST["username"];
+
+        $root_query = $connection->query("SELECT root FROM Accounts where CustomerID='".$_POST["username"]."';");
+        $root = $root_query->fetch_assoc();
+        $_SESSION["root"] = $root["root"];
         $connection->close();
-    } else {
-        $session = $_GET["sessionID"];
-        if(!$session) {
-            redirect("Login.php");
-        } else if (!($user = verifySession($session))) {
-            redirect("Login.php");
-        }
+    } else if (!isset($_SESSION["CustomerID"])) {
+        redirect("Login.php");
+
     }
 }
 
