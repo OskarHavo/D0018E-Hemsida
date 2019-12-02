@@ -42,7 +42,6 @@ function closeAdminForm() {
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
-        <script src="javascripts.js"></script>
     </head>
 
     <body >

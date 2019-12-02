@@ -2,7 +2,6 @@
 session_start();
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 include_once ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-echo $_SESSION["CustomerID"];
 /*
     * Bra info
     * https://www.w3schools.com/php/php_superglobals_get.asp
@@ -57,7 +56,6 @@ function create_comments() {
 mysqli_free_result($query_result);
 mysqli_free_result($query_result2);
 $conn->close();
-$user = fetchSessionUser();
 ?>
 <script>
     
@@ -78,7 +76,6 @@ function closeFormReview() {
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
-        <script src="javascripts.js"></script>
     </head>
     <body >
         <?php include("navbar.php"); ?>

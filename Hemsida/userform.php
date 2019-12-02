@@ -1,4 +1,4 @@
-<button class="openFormButton" id="userformbutton" onclick="openForm()">Du är inloggad som <?php echo $user["CustomerID"];?></button>
+<button class="openFormButton" id="userformbutton" onclick="openForm()">Du är inloggad som <?php echo $_SESSION["CustomerID"];?></button>
 <div class="form-popup" id="userform">
         <form action="logout.php" class="form-container">
             <h1>Du är inloggad som <?php echo $_SESSION["CustomerID"];?></h1>

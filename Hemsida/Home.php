@@ -8,7 +8,6 @@ include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
-         <script src="javascripts.js"></script>
     </head>
 
     <body>

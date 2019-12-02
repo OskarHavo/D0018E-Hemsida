@@ -6,8 +6,5 @@
     session_unset();
     session_destroy();
     $connection = server_connect();
-    logout($connection);
-
     redirect("Home.php");
-
 ?>

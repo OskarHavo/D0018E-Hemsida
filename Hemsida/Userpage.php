@@ -1,5 +1,5 @@
 <?php
-        //session_start();
+        session_start();
 	    include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 	    include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 	
@@ -19,7 +19,7 @@
 	            echo    "<td>".$row["OrderID"]."</td>";
 	            echo    "<td>".$row["ProductNumber"]."</td>";
 	            echo    "<td>".$row["Quantity"]."</td>";
-	            echo    "<td>".$row["Price"].":-</td>";
+	            echo    "<td>".$row["Price"]*$row["Quantity"].":-</td>";
 	            echo "</tr>";
 	        }
 	    }

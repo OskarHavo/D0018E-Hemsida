@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 

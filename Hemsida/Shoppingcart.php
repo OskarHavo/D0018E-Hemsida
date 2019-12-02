@@ -9,10 +9,11 @@ if (!isset($_SESSION["CustomerID"])) {
 $conn = server_connect();
 $cart_query = $conn->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$_SESSION["CustomerID"]."';");
 $cartID = $cart_query->fetch_assoc();
-if ($cartID["ShoppingcartID"] == NULL) {
-    redirect("Shoppingcart_empty.php?sessionID=". $_GET["sessionID"]);
-}
 $conn->close();
+if ($cartID["ShoppingcartID"] == NULL) {
+    redirect("Shoppingcart_empty.php");
+}
+
 function create_cart() {
     //global $user;
     global $cartID;
