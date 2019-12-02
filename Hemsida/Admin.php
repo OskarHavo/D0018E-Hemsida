@@ -3,11 +3,14 @@
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
     include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 
-    require_login();
-    if (!$user["root"]) {
+    if (!isset($_SESSION["CustomerID"])) {
+        redirect("Login.php");
+    }
+    if (!$_SESSION["root"]) {
         redirect("logout.php");
     }
-    $_SESSION["CustomerID"] = $user["CustomerID"];
+
+    //$_SESSION["CustomerID"] = $user["CustomerID"];
     function remove_product($product) {
         $connection = server_connect();
 
@@ -42,7 +45,7 @@ function closeAdminForm() {
         <script src="javascripts.js"></script>
     </head>
 
-    <body onload="setSessionID('<?php echo fetchSessionID();?>')">
+    <body >
         <?php include("navbar.php"); ?>
         <div id="container">
             

@@ -1,4 +1,5 @@
 <?php
+
 /* Källa: https://stackoverflow.com/questions/768431/how-do-i-make-a-redirect-in-php*/
 function server_connect($username="customer",$password="") {
     // Koppla upp mot servern.
@@ -74,11 +75,11 @@ function validate_user($username, $password, $connection) {
     $crypto_password = crypt($password,'$6$rounds=5000$'.$salt.'$');
 
     if ($crypto_password == $user["Password"]) {
-        /*$key_query = $connection->query("SELECT * FROM Sessions WHERE CustomerID='".$user["CustomerID"]."';");
+        $key_query = $connection->query("SELECT * FROM Sessions WHERE CustomerID='".$user["CustomerID"]."';");
         if ($key_query->num_rows > 0) {
             $key = $key_query->fetch_assoc();
             return $key["SessionID"];
-        }*/
+        }
 
         $key = create_session_ID();
         $connection->query("INSERT INTO Sessions values('".$key."','".$user["CustomerID"]."');");
@@ -173,23 +174,29 @@ function get_session_username() {
 }
 
 function login() {
-    global $user;
+    //global $user;
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $connection = server_connect();
         $key = validate_user($_POST["username"],$_POST["password"],$connection);
-        $connection->close();
-        $_SESSION["key"] = $key;
-        $_SESSION["CustomerID"] =
+        //$connection->close();
+
         if (!$key) {
             redirect("Login.php");
         } else {
             redirect("Userpage.php?sessionID=".$key);
         }
-        $user = verifySession($session);
+        $_SESSION["key"] = $key;
+        $_SESSION["CustomerID"] = $_POST["username"];
+
+        $root_query = $connection->query("SELECT root FROM Accounts where CustomerID='".$_POST["username"]."';");
+        $root = $root_query->fetch_assoc();
+        $_SESSION["root"] = $root["root"];
+        //$user = verifySession($session);
         $connection->close();
     } else {
         if (!isset($_SESSION["CustomerID"])) {
-            redirect("Login.php");
+            //redirect("Login.php");
+            echo var_dump($GLOBALS);
         }
 
         /*

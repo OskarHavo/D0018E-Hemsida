@@ -80,7 +80,7 @@ function closeFormReview() {
         <link rel="stylesheet" href="style.css">
         <script src="javascripts.js"></script>
     </head>
-    <body onload="setSessionID('<?php echo fetchSessionID();?>')">
+    <body >
         <?php include("navbar.php"); ?>
         <div id="container">
 

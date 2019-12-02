@@ -1,11 +1,18 @@
 <?php
+session_start();
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
     include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 
-    require_login();
-    if ($user["root"]) {
+    //require_login();
+    if (!isset($_SESSION["CustomerID"])) {
+        redirect("Home.php");
+    }
+    if ($_SESSION["root"]) {
         redirect("Admin.php?sessionID=".$user["SessionID"]);
     }
+    /*if ($user["root"]) {
+        redirect("Admin.php?sessionID=".$user["SessionID"]);
+    }*/
 
     $orderID = $_GET["OrderID"];
     $user = get_session_username();

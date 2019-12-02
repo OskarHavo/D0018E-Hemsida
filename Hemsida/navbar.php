@@ -78,9 +78,9 @@ function create_category() {
         </ul>
 
         <?php
-        if ($user) {
+        /*if (isset($_SESSION["CustomerID"])) {
             include_once($_SERVER['DOCUMENT_ROOT']."/userform.php");
-        }
+        }*/
     ?>
 
 

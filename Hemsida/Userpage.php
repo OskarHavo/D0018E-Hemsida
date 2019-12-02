@@ -1,17 +1,17 @@
 <?php
-        session_start();
+        //session_start();
 	    include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 	    include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 	
 	    login();
-        if ($user["root"]) {
+        if ($_SESSION["root"]) {
             redirect("Admin.php?sessionID=".$user["SessionID"]);
         }
 	
 	function create_orders() {
-	    global $user;
+	    //global $user;
 	    $connection = server_connect();
-	    $query = $connection->query("SELECT OrderID, Quantity, ProductNumber, Price FROM Orders WHERE CustomerID='".$user["CustomerID"]."' AND Price IS NOT NULL;");
+	    $query = $connection->query("SELECT OrderID, Quantity, ProductNumber, Price FROM Orders WHERE CustomerID='".$_SESSION["CustomerID"]."' AND Price IS NOT NULL;");
 	    if ($query->num_rows > 0) {
 	        while ($row = $query->fetch_assoc()) {
 	            /* Det här är bara en massa <tr> med <td> inuti. */
@@ -40,7 +40,7 @@ function taBortKontoKnapp() {
 	        <script src="javascripts.js"></script>
 	    </head>
 	
-	    <body onload="setSessionID('<?php echo fetchSessionID();?>')">
+	    <body >
 	
 	
 	        <?php include("navbar.php"); ?>
@@ -48,7 +48,7 @@ function taBortKontoKnapp() {
 	          <div id="container">
 	
 	            <div id="userpagerubric">
-	                <p>Mina Ordrar (<?php echo $user["CustomerID"];?>)</p>
+	                <p>Mina Ordrar (<?php echo $_SESSION["CustomerID"];?>)</p>
                     
 	            </div>
 	
