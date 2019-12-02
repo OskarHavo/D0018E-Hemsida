@@ -16,8 +16,8 @@
 	        while ($row = $query->fetch_assoc()) {
 	            /* Det här är bara en massa <tr> med <td> inuti. */
 	            echo "<tr>";
-	            echo    "<td>".$row["OrderID"]."</td>";
-	            echo    "<td>".$row["ProductNumber"]."</td>";
+	            echo    "<td>".$row["OrderID"]."</td>"; 
+        	    echo    "<td>".$row["ProductNumber"]."</td>"; 
 	            echo    "<td>".$row["Quantity"]."</td>";
 	            echo    "<td>".$row["Price"]*$row["Quantity"].":-</td>";
 	            echo "</tr>";
@@ -57,9 +57,9 @@ function taBortKontoKnapp() {
 	                <tbody>
 	                    <tr>
 	                        <th scope="row">Ordernummer</th>
-	                        <td>Produktnummer<td>
-	                        <td>antal</td>
-	                        <td>Pris</td>
+                            <th>Produktnummer</th>
+	                        <th>Antal</th>
+	                        <th>Pris</th>
 	                    </tr>
 	                    <?php
 	                        create_orders();

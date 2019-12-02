@@ -483,11 +483,9 @@ body{
     height: 400px;
     float: left;
     text-align: center;
-    font-size: 28px;
     font-weight: bold;
     background-color: #ffac4d;
     overflow-y: scroll;
-    white-space: nowrap;
     
 }
 .userpage-table{
@@ -501,7 +499,9 @@ body{
 
 
 }
-
+.userpage-table th{
+    text-align: center;
+}
 .userpage-table td{
     padding-top: 10px;
     text-align: center;
