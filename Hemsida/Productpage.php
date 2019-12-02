@@ -1,7 +1,8 @@
 <?php
+session_start();
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 include_once ($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-
+echo $_SESSION["CustomerID"];
 /*
     * Bra info
     * https://www.w3schools.com/php/php_superglobals_get.asp

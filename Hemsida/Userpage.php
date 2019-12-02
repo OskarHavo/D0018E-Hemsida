@@ -1,8 +1,9 @@
 <?php
+        session_start();
 	    include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 	    include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 	
-	    require_login();
+	    login();
         if ($user["root"]) {
             redirect("Admin.php?sessionID=".$user["SessionID"]);
         }

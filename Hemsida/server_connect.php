@@ -1,10 +1,10 @@
 <?php
 /* Källa: https://stackoverflow.com/questions/768431/how-do-i-make-a-redirect-in-php*/
-function server_connect() {
+function server_connect($username="customer",$password="") {
     // Koppla upp mot servern.
     $servername = "localhost";
-    $username = "customer";
-    $password = "";
+    //$username = "customer";
+    //$password = "";
     $dbname = "website";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -74,11 +74,11 @@ function validate_user($username, $password, $connection) {
     $crypto_password = crypt($password,'$6$rounds=5000$'.$salt.'$');
 
     if ($crypto_password == $user["Password"]) {
-        $key_query = $connection->query("SELECT * FROM Sessions WHERE CustomerID='".$user["CustomerID"]."';");
+        /*$key_query = $connection->query("SELECT * FROM Sessions WHERE CustomerID='".$user["CustomerID"]."';");
         if ($key_query->num_rows > 0) {
             $key = $key_query->fetch_assoc();
             return $key["SessionID"];
-        }
+        }*/
 
         $key = create_session_ID();
         $connection->query("INSERT INTO Sessions values('".$key."','".$user["CustomerID"]."');");
@@ -93,7 +93,7 @@ function logout($connection) {
     //$query = $connection->query("SELECT SessionID FROM Sessions WHERE SessionID=". $session);
 
     //if ($query->fetch_assoc() == $session) {
-    $connection->query("DELETE FROM Sessions WHERE SessionID='". $session."';");
+    $connection->query("DELETE FROM Sessions WHERE SessionID='". $_SESSION["key"]."';");
     //}
 }
 
@@ -114,13 +114,13 @@ function create_session_ID() {
 
 function fetchSessionID() {
     $session = $_GET["sessionID"];
-    if (!$session) {
+    if (!$_SESSION["key"]) {
 
         //return create_session_ID();
         return ;
     } else {
         if ($sess = verifySession($session)) {
-            return $session;
+            return $_SESSION["key"];
         }
         return;
     }
@@ -128,7 +128,7 @@ function fetchSessionID() {
 
 function fetchSessionUser() {
     $session = $_GET["sessionID"];
-    if (!$session) {
+    if (!$_SESSION["key"]) {
 
         //return create_session_ID();
         return ;
@@ -147,7 +147,7 @@ function fetchSessionUser() {
 */
 function verifySession($session) {
     $connection = server_connect();
-    $query = $connection->query("SELECT Sessions.SessionID,Sessions.CustomerID,Accounts.root FROM Sessions INNER JOIN Accounts ON Accounts.CustomerID=Sessions.CustomerID WHERE SessionID='".$session."'");
+    $query = $connection->query("SELECT Sessions.SessionID,Sessions.CustomerID,Accounts.root FROM Sessions INNER JOIN Accounts ON Accounts.CustomerID=Sessions.CustomerID WHERE SessionID='".$_SESSION["key"]."'");
     $connection->close();
     if ($query->num_rows == 1) {
         return $query->fetch_assoc();
@@ -160,7 +160,7 @@ function verifySession($session) {
 
 function get_session_username() {
     $session = $_GET["sessionID"];
-    if (!$session) {
+    if (!$_SESSION["key"]) {
 
         //return create_session_ID();
         return ;
@@ -172,13 +172,14 @@ function get_session_username() {
     }
 }
 
-function require_login() {
+function login() {
     global $user;
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $connection = server_connect();
         $key = validate_user($_POST["username"],$_POST["password"],$connection);
         $connection->close();
-
+        $_SESSION["key"] = $key;
+        $_SESSION["CustomerID"] =
         if (!$key) {
             redirect("Login.php");
         } else {
@@ -187,12 +188,18 @@ function require_login() {
         $user = verifySession($session);
         $connection->close();
     } else {
+        if (!isset($_SESSION["CustomerID"])) {
+            redirect("Login.php");
+        }
+
+        /*
         $session = $_GET["sessionID"];
-        if(!$session) {
+        if(!$_SESSION["key"]) {
             redirect("Login.php");
         } else if (!($user = verifySession($session))) {
             redirect("Login.php");
         }
+        */
     }
 }
 
