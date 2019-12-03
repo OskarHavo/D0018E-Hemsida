@@ -5,7 +5,7 @@
 	
 	    login();
         if ($_SESSION["root"]) {
-            redirect("Admin.php?sessionID=".$user["SessionID"]);
+            redirect("Admin.php");
         }
 	
 	function create_orders() {
