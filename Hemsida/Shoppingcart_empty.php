@@ -29,7 +29,12 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 
                 <div id="emptyshoppingcartdiv">
   
-                <a href="/Home.php">Fortsätt handla genom att klicka på texten här!</a>
+                <form class="adminform" action="Home.php" method="post">
+                <fieldset>
+                    <input type="submit" class="knapp" value="Fortsätt att shoppa genom att trycka här">
+                 
+                </fieldset>
+                     </form>
                 </div>
             </div>
         </div>

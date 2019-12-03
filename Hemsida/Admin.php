@@ -139,7 +139,19 @@ function taBortKontoKnapp() {
                  
                 </fieldset>
                      </form>
-            <a href="phpmyadmin">Länk till PHPmyAdmin</a>
+            <div class = "divdivider"></div>
+            <form class="adminform" action="phpmyadmin" method="post">
+                <fieldset>
+                    <input type="submit" class="knapp" value="Länk till PHPmyAdmin">
+                 
+                </fieldset>
+                     </form>
+             <form class="adminform" action="logout.php" method="post">
+                <fieldset>
+                    <input type="submit" class="knapp" value="Logga Ut">
+                 
+                </fieldset>
+                     </form>
             </div>
             
             
