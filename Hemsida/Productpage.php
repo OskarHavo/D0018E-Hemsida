@@ -26,7 +26,7 @@ if (!$query_result || !$comment_query) {
 $product = $query_result->fetch_assoc();
 
 // Kolla om produkten faktiskt finns
-if (!$product) {
+if (!$product || !$product["InStore"]) {
     $conn->close();
     redirect("404.html");
 }

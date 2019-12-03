@@ -71,10 +71,13 @@ function taBortKontoKnapp() {
 	            <div class= "liteknapp" id="logoutdiv">
 	                <p><a href="logout.php">Logga ut</a></p>
 	            </div>
-                <button class="cancelaccountdiv liteknapp" onclick="taBortKontoKnapp()">
+                <form action="Delete_account.php">
+                    <button class="cancelaccountdiv liteknapp" onclick="taBortKontoKnapp()">
                   
                   <p>Ta bort konto</p>
                   </button>
+                </form>
+
 	
 	
 	        </div>

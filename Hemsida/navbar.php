@@ -11,7 +11,9 @@ function create_product($product_query) {
     //$products = $connection->query("SELECT * FROM Products where ProductType='".$category_array[0]."';");
     if ($product_query->num_rows > 0) {
         while($product = $product_query->fetch_assoc()) {
-            echo "<li><a href='Productpage.php?ProductNumber=".$product["ProductNumber"]."'>".$product["ProductName"]."</a></li>";
+            if ($product["InStore"]) {
+                echo "<li><a href='Productpage.php?ProductNumber=".$product["ProductNumber"]."'>".$product["ProductName"]."</a></li>";
+            }
         }
     }
 }
