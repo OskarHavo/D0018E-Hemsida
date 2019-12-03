@@ -1,3 +1,9 @@
+<script>
+function upptagetNamnPopUp() {
+  confirm("Namnet är redan i bruk");
+}
+
+</script>
 <?php
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
@@ -16,7 +22,7 @@ function user_join() {
             $key = validate_user($_POST["username"], $_POST["password"], $connection);
             redirect("Userpage.php?sessionID=".$key);
         } else {
-            echo "<p>Användaren är tagen</p>";
+            echo "<script>upptagetNamnPopUp()</script>";
         }
 
 
@@ -29,6 +35,7 @@ if ($_POST["action"] == "register") {
 
 
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
