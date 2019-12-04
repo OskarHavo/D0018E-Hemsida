@@ -22,19 +22,28 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
             case "remove_product":
                 remove_product($_POST["ProductNumber"]);
                 break;
+            case "change_prize":
+                change_price($_POST["ProductNumber"],$_POST["price"] );
+                break;
             default:
         }
     }
 
+    function change_price($product, $price) {
+        $connection = server_connect();
+        $connection->query("Update Products SET ProductPrice='".$price."' WHERE ProductNumber='".$product."';");
+        $connection->close();
+    }
+
     function remove_comment($product,$customer) {
         $connection = server_connect();
-        $connection->query("DELETE FROM Comments WHERE CustomerID='".$customer."' AND ProductNumber='".$product."'");
+        $connection->query("DELETE FROM Comments WHERE CustomerID='".$customer."' AND ProductNumber='".$product."';");
         $connection->close();
     }
 
     function remove_product($product) {
         $connection = server_connect();
-        $connection->query("UPDATE Products SET InStore=FALSE WHERE  ProductNumber='".$product."'");
+        $connection->query("UPDATE Products SET InStore=FALSE WHERE  ProductNumber='".$product."';");
         $connection->close();
     }
 
@@ -137,6 +146,20 @@ function taBortKontoKnapp() {
                     <input type="hidden" name="function" value="change_stock">
                     <input type="submit" class="knapp" value="Ändra saldo" onclick="taBortKontoKnapp()">
                  
+                </fieldset>
+                     </form>
+                <form class="adminform" action="Admin.php" method="post">
+                <fieldset>
+                    <legend>ÄNDRA PRIS</legend>
+
+                    ProduktID:
+                    <input type="text" name="ProductNumber" required >
+
+                    Pris:
+                    <input type="text" name="price" required >
+                    <input type="hidden" name="function" value="change_prize">
+                    <input type="submit" class="knapp" value="Ändra pris" onclick="taBortKontoKnapp()">
+
                 </fieldset>
                      </form>
             <div class = "divdivider"></div>
