@@ -7,11 +7,8 @@ if (!isset($_SESSION["CustomerID"])) {
     redirect("Login.php");
 }
 $conn = server_connect();
-$cart_query = $conn->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$_SESSION["CustomerID"]."';");
-$cartID = $cart_query->fetch_assoc();
 
-
-if ($cartID["ShoppingcartID"] == NULL) {
+if ($_SESSION["ShoppingcartID"] == NULL) {
     $conn->close();
     redirect("Shoppingcart_empty.php");
 }
@@ -23,23 +20,20 @@ if ($_GET["delete_cart"]=="TRUE") {
 function empty_cart() {
     global $conn;
     $conn->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
-    $conn->query("DELETE FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."';");
-    $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$cartID["ShoppingcartID"]."';");
+    $conn->query("DELETE FROM Orders WHERE OrderID='".$_SESSION["ShoppingcartID"]."';");
+    $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$_SESSION["ShoppingcartID"]."';");
     redirect("Shoppingcart_empty.php");
 }
 
 $conn->close();
 function create_cart() {
     //global $user;
-    global $cartID;
     global $total_cost;
-    global $cartID;
     global $can_buy;
     $can_buy = TRUE;
-    //$cart_query = $conn->query("SELECT ShoppingcartID FROM Accounts WHERE CustomerID='".$user."';");
-    global $cart_query;
+
     $conn = server_connect();
-    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock,Products.ProductNumber FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.Price IS NULL AND Orders.OrderID='".$cartID["ShoppingcartID"]."';
+    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock,Products.ProductNumber FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.Price IS NULL AND Orders.OrderID='".$_SESSION["ShoppingcartID"]."';
 ");
     if ($shoppingcart->num_rows > 0) {
         while ($product = $shoppingcart->fetch_assoc() ) {
@@ -66,7 +60,7 @@ function create_cart() {
         }
     } else {
         $conn->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
-        $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$cartID["ShoppingcartID"]."';");
+        $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$_SESSION["ShoppingcartID"]."';");
     }
     $conn->close();
 }
@@ -116,8 +110,8 @@ function create_cart() {
                 <a <?php
                    if ($can_buy) {
                        echo "href='checkout.php";
-                       if ($cartID) {
-                           echo '?OrderID='.$cartID["ShoppingcartID"];
+                       if ($_SESSION["ShoppingcartID"]) {
+                           echo '?OrderID='.$_SESSION["ShoppingcartID"];
                        }
                        echo "'";
                    } else {
