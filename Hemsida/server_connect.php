@@ -95,9 +95,10 @@ function login() {
         }
         $_SESSION["CustomerID"] = $_POST["username"];
 
-        $root_query = $connection->query("SELECT root FROM Accounts where CustomerID='".$_POST["username"]."';");
-        $root = $root_query->fetch_assoc();
-        $_SESSION["root"] = $root["root"];
+        //$root_query = $connection->query("SELECT root,ShoppingcartID FROM Accounts where CustomerID='".$_POST["username"]."';");
+        //$root = $root_query->fetch_assoc();
+        $_SESSION["root"] = $user["root"];
+        $_SESSION["ShoppingcartID"] = $user["ShoppingcartID"];
         $connection->close();
     } else if (!isset($_SESSION["CustomerID"])) {
         redirect("Login.php");

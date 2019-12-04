@@ -18,7 +18,7 @@ if ($cartID["ShoppingcartID"] == NULL) {
 if ($_GET["delete_cart"]=="TRUE") {
     empty_cart();
 }
-
+/*
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if ($_POST["addproduct"]) {
         $query = $conn->query("SELECT Quantity FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["addproduct"]."';");
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
     }
-}
+}*/
 function empty_cart() {
     global $conn;
     $conn->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
@@ -74,9 +74,9 @@ function create_cart() {
             }
             echo "<tr>";
             echo    "<td>".$product["ProductName"]."</td>";
-            echo    "<td>"."<form action='Shoppingcart.php' method='post'> <button  class='plussknapp' type='submit' name='addproduct' value='".$product["ProductNumber"]."'>"."</button></form>"."</td>";
+            echo    "<td>"."<form action='post_functions.php' method='post'> <input type='hidden' value='cart_change_product' name='post_ID'><button  class='plussknapp' type='submit' name='addproduct' value='".$product["ProductNumber"]."'>"."</button></form>"."</td>";
             echo    "<td>".$product["Quantity"]."</td>";
-            echo    "<td>"."<form action='Shoppingcart.php' method='post'> <button class='minusknapp' type='submit' name='subtractproduct' value='".$product["ProductNumber"]."'>"."</button></form>"."</td>";
+            echo    "<td>"."<form action='post_functions.php' method='post'> <input type='hidden' value='cart_change_product' name='post_ID'><button class='minusknapp' type='submit' name='subtractproduct' value='".$product["ProductNumber"]."'>"."</button></form>"."</td>";
             echo    "<td>".$product_cost.":-</td>";
             echo "</tr>";
         }
