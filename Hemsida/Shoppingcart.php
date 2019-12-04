@@ -70,7 +70,7 @@ function create_cart() {
                 *  Det vore även bra om du kan lägga till en knapp för att ta bort en vara. Gör en test
                 *  <tr><td>...</td></tr> med knapp där nere; du behöver inte fippla med php:n.
                 */
-                echo " bgcolor='#FF0000'";
+                //echo  " bgcolor='#FF0000'";
             }
             echo "<tr>";
             echo    "<td>".$product["ProductName"]."</td>";
@@ -125,7 +125,7 @@ function create_cart() {
                 <p>Total Summa: <?php echo $total_cost;?> :-</p>
             </div>
             <div class= "liteknapp" id="tömshoppingcartdiv">
-                <a href="Shoppingcart.php?delete_cart=TRUE">Töm vagnen</a>
+                <a href="Shoppingcart.php?delete_cart=TRUE">Töm</a>
             </div>
 
             <div class= "liteknapp" id="shoppingcartcheckoutbutton">
@@ -143,7 +143,7 @@ function create_cart() {
                     if ($can_buy) {
                         echo "Köp";
                     } else {
-                        echo "Slut it lager";
+                        echo " Minska antal";
                     }
                     ?></a>
             </div>

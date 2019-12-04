@@ -142,7 +142,7 @@ function greenBuyColor(){
 
             </div> -->
             <!--<div class= "buyButton liteknapp">-->
-                <button class= "buyButton liteknapp" type="submit" form="amountForm">köp</button>
+                <button class= "buyButton liteknapp" type="submit" form="amountForm">Köp</button>
             <!--</div>-->
 
             <div class ="selectAmountdiv" >
