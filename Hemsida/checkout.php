@@ -21,7 +21,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
         $connection = server_connect();
         $connection->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
 
-        $shoppingcart = $connection->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.ProductNumber FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.Price IS NULL;");
+        $shoppingcart = $connection->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.ProductNumber FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.Price IS NULL AND Orders.OrderID='".$orderID."'");
         if ($shoppingcart->num_rows > 0) {
             while ($product = $shoppingcart->fetch_assoc() ) {
                 $connection->query("UPDATE Orders SET Price='".$product["ProductPrice"]."' WHERE ProductNumber='".$product["ProductNumber"]."' AND OrderID='".$orderID."';");
@@ -31,7 +31,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 
          redirect("Userpage.php?sessionID=". $session);
     } else {
-        redirect("Home.php?sessionID=". $session);
+        redirect("Home.php");
     }
 
 ?>
