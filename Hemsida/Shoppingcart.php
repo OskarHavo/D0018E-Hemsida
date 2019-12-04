@@ -22,6 +22,7 @@ function empty_cart() {
     $conn->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
     $conn->query("DELETE FROM Orders WHERE OrderID='".$_SESSION["ShoppingcartID"]."';");
     $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$_SESSION["ShoppingcartID"]."';");
+    $_SESSION["ShoppingcartID"] = NULL;
     redirect("Shoppingcart_empty.php");
 }
 
