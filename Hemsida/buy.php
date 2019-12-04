@@ -12,7 +12,8 @@
     }
 /* Det här fungerar het enkelt som ett script som lägger till en produkt i varukorgen */
 
-    $productID = $_GET["ProductNumber"];
+    $productID = $_POST["ProductNumber"];
+    $quantity = $_POST["quantity"];
     //$user = verifySession($_GET["sessionID"])["CustomerID"];
 
     $connection = server_connect();
@@ -34,9 +35,9 @@
 
     if ($product_query->num_rows > 0) {
         $product = $product_query->fetch_assoc();
-        $connection->query("UPDATE Orders SET Quantity='".($product["Quantity"]+1)."' WHERE OrderID='".$cartID["cartID"]."' AND ProductNumber='".$productID."';");
+        $connection->query("UPDATE Orders SET Quantity='".($product["Quantity"]+$quantity)."' WHERE OrderID='".$cartID["cartID"]."' AND ProductNumber='".$productID."';");
     } else {
-        $connection->query("INSERT INTO Orders(OrderID, Quantity,ProductNumber,CustomerID) VALUES('".$cartID["cartID"]."','1','".$productID."','".$_SESSION["CustomerID"]."');");
+        $connection->query("INSERT INTO Orders(OrderID, Quantity,ProductNumber,CustomerID) VALUES('".$cartID["cartID"]."',".$quantity.",'".$productID."','".$_SESSION["CustomerID"]."');");
         //echo "I'm not updating properly";
     }
 

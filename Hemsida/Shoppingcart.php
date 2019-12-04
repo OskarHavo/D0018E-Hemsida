@@ -15,6 +15,10 @@ if ($cartID["ShoppingcartID"] == NULL) {
     $conn->close();
     redirect("Shoppingcart_empty.php");
 }
+if ($_GET["delete_cart"]=="TRUE") {
+    empty_cart();
+}
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if ($_POST["addproduct"]) {
         $query = $conn->query("SELECT Quantity FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["addproduct"]."';");
@@ -32,6 +36,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
     }
+}
+function empty_cart() {
+    global $conn;
+    $conn->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
+    $conn->query("DELETE FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."';");
+    $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$cartID["ShoppingcartID"]."';");
+    redirect("Shoppingcart_empty.php");
 }
 $conn->close();
 function create_cart() {
@@ -54,7 +65,7 @@ function create_cart() {
             $product_cost = $product["ProductPrice"]*$product["Quantity"];
             $total_cost = $total_cost + $product_cost;
             echo "<tr";
-            if ($product["InStock"] - $product["Quantity"] <= 0) {
+            if ($product["InStock"] - $product["Quantity"] < 0) {
                 /* Det här indikerar att man vill köpa för många av produkten. Ändra stil om du vill.
                 *  Det vore även bra om du kan lägga till en knapp för att ta bort en vara. Gör en test
                 *  <tr><td>...</td></tr> med knapp där nere; du behöver inte fippla med php:n.
@@ -114,9 +125,9 @@ function create_cart() {
                 <p>Total Summa: <?php echo $total_cost;?> :-</p>
             </div>
             <div class= "liteknapp" id="tömshoppingcartdiv">
-                <p>Töm vagnen 
-                </p>
+                <a href="Shoppingcart.php?delete_cart=TRUE">Töm vagnen</a>
             </div>
+
             <div class= "liteknapp" id="shoppingcartcheckoutbutton">
                 <a <?php
                    if ($can_buy) {
