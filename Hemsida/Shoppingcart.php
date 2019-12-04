@@ -15,28 +15,11 @@ if ($cartID["ShoppingcartID"] == NULL) {
     $conn->close();
     redirect("Shoppingcart_empty.php");
 }
+
 if ($_GET["delete_cart"]=="TRUE") {
     empty_cart();
 }
-/*
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if ($_POST["addproduct"]) {
-        $query = $conn->query("SELECT Quantity FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["addproduct"]."';");
-        $quantity = ($query->fetch_assoc())["Quantity"]+1;
-        //$quantity = 1;
-        $conn->query("UPDATE Orders SET Quantity='".$quantity."' WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["addproduct"]."';");
-    } else if ($_POST["subtractproduct"]) {
-        $query = $conn->query("SELECT Quantity FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["subtractproduct"]."';");
-        $quantity = ($query->fetch_assoc())["Quantity"]-1;
-        //$quantity = 1;
-        if ($quantity == 0) {
-            $conn->query("DELETE FROM Orders WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["subtractproduct"]."';");
-        } else {
-            $conn->query("UPDATE Orders SET Quantity='".$quantity."' WHERE OrderID='".$cartID["ShoppingcartID"]."' AND ProductNumber='".$_POST["subtractproduct"]."';");
-        }
 
-    }
-}*/
 function empty_cart() {
     global $conn;
     $conn->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
@@ -44,6 +27,7 @@ function empty_cart() {
     $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$cartID["ShoppingcartID"]."';");
     redirect("Shoppingcart_empty.php");
 }
+
 $conn->close();
 function create_cart() {
     //global $user;
@@ -70,7 +54,7 @@ function create_cart() {
                 *  Det vore även bra om du kan lägga till en knapp för att ta bort en vara. Gör en test
                 *  <tr><td>...</td></tr> med knapp där nere; du behöver inte fippla med php:n.
                 */
-                echo " bgcolor='#FF0000'";
+                //echo  " bgcolor='#FF0000'";
             }
             echo "<tr>";
             echo    "<td>".$product["ProductName"]."</td>";
@@ -125,7 +109,7 @@ function create_cart() {
                 <p>Total Summa: <?php echo $total_cost;?> :-</p>
             </div>
             <div class= "liteknapp" id="tömshoppingcartdiv">
-                <a href="Shoppingcart.php?delete_cart=TRUE">Töm vagnen</a>
+                <a href="Shoppingcart.php?delete_cart=TRUE">Töm</a>
             </div>
 
             <div class= "liteknapp" id="shoppingcartcheckoutbutton">
@@ -143,7 +127,7 @@ function create_cart() {
                     if ($can_buy) {
                         echo "Köp";
                     } else {
-                        echo "Slut it lager";
+                        echo " Minska antal";
                     }
                     ?></a>
             </div>
