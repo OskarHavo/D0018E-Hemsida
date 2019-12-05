@@ -39,9 +39,13 @@ if (!$product || !$product["InStore"]) {
         */
 function create_comments() {
     global $comment_query;
+    global $has_comment;
     if ($comment_query->num_rows > 0) {
         while($comment = $comment_query->fetch_assoc()){
             echo "<tr><td>".$comment["CustomerID"]. "</td><td>".$comment["Comment"]." </td><td>Betyg: ".$comment["rating"] ."</td></tr>";
+            if ($comment["CustomerID"] == $_SESSION["CustomerID"]) {
+                $has_comment = TRUE;
+            }
         }
     } else {
         echo "Var först med att lägga en recension!";
@@ -163,11 +167,7 @@ function greenBuyColor(){
                 <p>  Recensioner  </p>
             </div>    
             
-            <?php
-                if (isset($_SESSION["CustomerID"])) {
-                    echo "<button class='openFormButton' onclick='openFormReview()'>Lämna en recension!</button>";
-                }
-            ?>
+
 
             
             <div id = "reviewdiv">
@@ -181,6 +181,11 @@ function greenBuyColor(){
                 </table>
 
             </div>
+            <?php
+                if (isset($_SESSION["CustomerID"]) && !$has_comment) {
+                    echo "<button class='openFormButton' onclick='openFormReview()'>Lämna en recension!</button>";
+                }
+            ?>
             <!--  https://www.w3schools.com/howto/howto_js_popup_form.asp -->
             <div class="form-popup" id="recensionform">
                 <form action="/leave_review.php" class="form-container" method="post">
