@@ -149,7 +149,7 @@ function greenBuyColor(){
                 <form class="amountform" id="amountForm" action="buy.php"
                       class="form-container" method="post">
                     <label for="antal"><b>Antal</b></label>
-                    <input type="text" value="1" name="quantity">
+                    <input type="number" value="1" name="quantity" max="<?php echo $product["InStock"];?>" min="1">
                     <input type="hidden" value="<?php echo $product["ProductNumber"];?>" name="ProductNumber">
                 </form>
             
@@ -161,7 +161,12 @@ function greenBuyColor(){
                 <p>  Recensioner  </p>
             </div>    
             
-            <button class="openFormButton" onclick="openFormReview()">Lämna en recension!</button>
+            <?php
+                if (isset($_SESSION["CustomerID"])) {
+                    echo "<button class='openFormButton' onclick='openFormReview()'>Lämna en recension!</button>";
+                }
+            ?>
+
             
             <div id = "reviewdiv">
 
@@ -173,24 +178,20 @@ function greenBuyColor(){
                     </tbody>
                 </table>
 
-
             </div>
-<!--  https://www.w3schools.com/howto/howto_js_popup_form.asp -->
+            <!--  https://www.w3schools.com/howto/howto_js_popup_form.asp -->
             <div class="form-popup" id="recensionform">
-                <form action="/bytnamnpåmig.php" class="form-container">
+                <form action="/leave_review.php" class="form-container" method="post">
                     <h1>Skriv din recension!</h1>
-
                     <label for="kommentar"><b>Kommentar:</b></label>
-                    <input type="text" placeholder="Lämna din kommentar" name="kommentar" required>
-
+                    <input type="text" placeholder="Lämna din kommentar" name="comment" required>
                     <label for="betyg"><b>Betyg:</b></label>
-                    <input type="text" placeholder="Ge ett betyg mellan 1-10" name="betyg" required>
-
+                    <input type="number" placeholder="Ge ett betyg mellan 1-10" name="rating" max="10" min="1" required>
+                    <input type="hidden" name="ProductNumber" value="<?php echo $product["ProductNumber"];?>">
                     <button type="submit" class="knapp">Skicka in din recension!</button>
                     <button type="button" class="knapp avbryt" onclick="closeFormReview()">Stäng formuläret</button>
                 </form>
-            </div> 
-
+            </div>
         </div>
     </body>
 </html>
