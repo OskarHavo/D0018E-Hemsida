@@ -28,13 +28,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
                 <p>Din shoppingvagn är tom<br></p>
 
                 <div id="emptyshoppingcartdiv">
-  
-                <form class="adminform" action="Home.php" method="post">
-                <fieldset>
-                    <input type="submit" class="knapp" value="Fortsätt att shoppa genom att trycka här">
-                 
-                </fieldset>
-                     </form>
+                    <button onclick="window.location.href='Home.php';" class="knapp">Fortsätt att shoppa genom att trycka här</button>
                 </div>
             </div>
         </div>
