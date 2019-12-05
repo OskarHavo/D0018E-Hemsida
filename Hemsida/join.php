@@ -2,6 +2,9 @@
 function upptagetNamnPopUp() {
   confirm("Namnet är redan i bruk");
 }
+function förKortNamnPopUp(){
+    confirm("Välj ett användarnamn med minst 5 karaktärer.")
+}
 
 </script>
 <?php
@@ -13,7 +16,7 @@ function user_join() {
         $connection = server_connect();
 
         if (strlen($_POST["username"]) < 5) {
-            echo "<p>Välj ett användarnamn med minst 5 karaktärer.</p>";
+            echo "<script>förKortNamnPopUp()</script>";
             return;
         }
 
