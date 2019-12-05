@@ -132,11 +132,23 @@ function greenBuyColor(){
 
             </div> -->
             <!--<div class= "buyButton liteknapp">-->
-                <button class= "buyButton liteknapp" type="submit" form="amountForm">Köp</button>
+                <button class= "buyButton liteknapp" type="submit" form="amountForm"><?php
+                        if ($product["InStock"] > 0) {
+                            echo "Köp";
+                        } else {
+                            echo "Slut i lager";
+                        }
+                    ?></button>
             <!--</div>-->
 
-            <div class ="selectAmountdiv" >
-                <form class="amountform" id="amountForm" action="buy.php"
+            <div class ="selectAmountdiv" <?php if ($product["InStock"] == 0) {echo "hidden";}?>>
+                <form class="amountform" id="amountForm" action="<?php
+                   if ($product["InStock"] > 0) {
+                       echo "buy.php";
+                   } else {
+                       echo "#";
+                   }
+                    ?>"
                       class="form-container" method="post">
                     <label for="antal"><b>Antal</b></label>
                     <input type="number" value="1" name="quantity" max="<?php echo $product["InStock"];?>" min="1">
