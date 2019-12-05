@@ -68,16 +68,6 @@ function closeFormReview() {
 } 
     
     
-// In progress kod för att färgen ska ändras på ett condition
-var div = document.getElementById( 'buyButton' );    
-div.onmouseover = function(){
-    this.style.backgroundColor = 'green';
-}    
-div.onmouseout = function(){
-    this.style.backgroundColor = 'red';
-}  
-    
-    
 function greenBuyColor(){
 }
     
