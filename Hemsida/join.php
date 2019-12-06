@@ -1,9 +1,9 @@
 <script>
 function upptagetNamnPopUp() {
-  confirm("Namnet är redan i bruk");
+  alert("Namnet är redan i bruk");
 }
 function förKortNamnPopUp(){
-    confirm("Välj ett användarnamn med minst 5 karaktärer.")
+    alert("Välj ett användarnamn med minst 5 karaktärer.")
 }
 
 </script>
