@@ -4,8 +4,6 @@
 function server_connect($username="customer",$password="") {
     // Koppla upp mot servern.
     $servername = "localhost";
-    //$username = "customer";
-    //$password = "";
     $dbname = "website";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -44,29 +42,8 @@ function add_user($username, $password, $connection) {
     # "INSERT INTO Accounts(CustomerID,Password) VALUES('".$username."','".$crypto_password."');"
 }
 
-/*
-*  Här vore det bra om vi får till ett prepared statement.
-*  Det behövs inte, men det täpper ju till ett par säkerhetshål.
-*/
+
 function validate_user($username, $password, $connection) {
-    //$stmt = $connection->prepare("select Password from Accounts where CustomerID= ?");
-    /*if (!($stmt = $connection->prepare("select Password from Accounts where '1'='1';"))) {
-        echo "Prepare failed: (" . $connection->errno . ") " . $connection->error;
-    }
-    //$stmt->bindParam('s',$username);
-    if (!$stmt->bindParam('s',$username)) {
-        echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-    }*/
-    //$stmt->execute();
-    /*
-    $query_result = $connection->query("select Password from Accounts where CustomerID='".$username."';");
-
-    if (!$query_result) {
-        echo "Error executing query: (" . $connection->errno . ") " . $connection->error;
-        return;
-    }*/
-
-
     $user = find_user($username, $connection);
     if (!$user) {
         return NULL;
@@ -95,8 +72,6 @@ function login() {
         }
         $_SESSION["CustomerID"] = $_POST["username"];
 
-        //$root_query = $connection->query("SELECT root,ShoppingcartID FROM Accounts where CustomerID='".$_POST["username"]."';");
-        //$root = $root_query->fetch_assoc();
         $_SESSION["root"] = $user["root"];
         $_SESSION["ShoppingcartID"] = $user["ShoppingcartID"];
         $connection->close();

@@ -1,8 +1,8 @@
 <script>
-function popUp() {
-    alert("Du har inte köpt produkten... än!");
-    window.location.href='Productpage.php?ProductNumber=<?php echo $_POST["ProductNumber"];?>';
-}
+    function popUp() {
+        alert("Du har inte köpt produkten... än!");
+        window.location.href='Productpage.php?ProductNumber=<?php echo $_POST["ProductNumber"];?>';
+    }
 </script>
 <?php
 session_start();

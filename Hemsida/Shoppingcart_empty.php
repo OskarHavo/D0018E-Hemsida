@@ -1,12 +1,10 @@
 <?php
 session_start();
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
-    include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-
-    //require_login();
-    if (!isset($_SESSION["CustomerID"])) {
-        redirect("Login.php");
-    }
+include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
+if (!isset($_SESSION["CustomerID"])) {
+    redirect("Login.php");
+}
 
 ?>
 

@@ -62,20 +62,20 @@ mysqli_free_result($query_result2);
 $conn->close();
 ?>
 <script>
-    
-    function openFormReview() {
-  document.getElementById("recensionform").style.display = "block";
-}
 
-function closeFormReview() {
-  document.getElementById("recensionform").style.display = "none";
-} 
-    
-    
-function greenBuyColor(){
-}
-    
-    
+    function openFormReview() {
+        document.getElementById("recensionform").style.display = "block";
+    }
+
+    function closeFormReview() {
+        document.getElementById("recensionform").style.display = "none";
+    } 
+
+
+    function greenBuyColor(){
+    }
+
+
 </script>
 
 <!DOCTYPE html>
@@ -129,62 +129,61 @@ function greenBuyColor(){
             </table>
 
             <!-- <div class= "buyButton" onclick="buy.php<?php
-                                echo '?ProductNumber='.$product["ProductNumber"];
-                         ?>">
+    echo '?ProductNumber='.$product["ProductNumber"];
+?>">
 
-                <a>Köp</a>
+<a>Köp</a>
 
-            </div> -->
+</div> -->
             <!--<div class= "buyButton liteknapp">-->
-                <button class= "buyButton liteknapp" type="submit" form="amountForm"><?php
-                        if ($product["InStock"] > 0) {
-                            echo "Köp";
-                        } else {
-                            echo "Slut i lager";
-                        }
-                    ?></button>
-            <!--</div>-->
+            <button class= "buyButton liteknapp" type="submit" form="amountForm"><?php
+                if ($product["InStock"] > 0) {
+                    echo "Köp";
+                } else {
+                    echo "Slut i lager";
+                }
+                ?></button>
 
             <div class ="selectAmountdiv" <?php if ($product["InStock"] == 0) {echo "hidden";}?>>
                 <form class="amountform" id="amountForm" action="<?php
-                   if ($product["InStock"] > 0) {
-                       echo "buy.php";
-                   } else {
-                       echo "#";
-                   }
-                    ?>"
+                                                                 if ($product["InStock"] > 0) {
+                                                                     echo "buy.php";
+                                                                 } else {
+                                                                     echo "#";
+                                                                 }
+                                                                 ?>"
                       class="form-container" method="post">
                     <label for="antal"><b>Antal</b></label>
                     <input type="number" value="1" name="quantity" max="<?php echo $product["InStock"];?>" min="1">
                     <input type="hidden" value="<?php echo $product["ProductNumber"];?>" name="ProductNumber">
                 </form>
-            
+
             </div>
-            
-            
-            
+
+
+
             <div class = reviewdivrubric>
                 <p>  Recensioner  </p>
             </div>    
-            
 
 
-            
+
+
             <div id = "reviewdiv">
 
                 <table class="review-table">
                     <tbody>
                         <?php
-    create_comments();
+                        create_comments();
                         ?>
                     </tbody>
                 </table>
 
             </div>
             <?php
-                if (isset($_SESSION["CustomerID"]) && !$has_comment) {
-                    echo "<button class='openFormButton' onclick='openFormReview()'>Lämna en recension!</button>";
-                }
+            if (isset($_SESSION["CustomerID"]) && !$has_comment) {
+                echo "<button class='openFormButton' onclick='openFormReview()'>Lämna en recension!</button>";
+            }
             ?>
             <!--  https://www.w3schools.com/howto/howto_js_popup_form.asp -->
             <div class="form-popup" id="recensionform">

@@ -2,7 +2,6 @@
 session_start();
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-//require_login();
 if (!isset($_SESSION["CustomerID"])) {
     redirect("Login.php");
 }
@@ -45,11 +44,7 @@ function create_cart() {
             $total_cost = $total_cost + $product_cost;
             echo "<tr";
             if ($product["InStock"] - $product["Quantity"] < 0) {
-                /* Det här indikerar att man vill köpa för många av produkten. Ändra stil om du vill.
-                *  Det vore även bra om du kan lägga till en knapp för att ta bort en vara. Gör en test
-                *  <tr><td>...</td></tr> med knapp där nere; du behöver inte fippla med php:n.
-                */
-                //echo  " bgcolor='#FF0000'";
+
             }
             echo "<tr>";
             echo    "<td>".$product["ProductName"]."</td>";
@@ -93,11 +88,6 @@ function create_cart() {
                         <?php
                         create_cart();
                         ?>
-                        <!-- Här kan du göra en test med delete knapp, tack.-->
-                        <!-- <tr>
-<td>
-</td>
-</tr> -->
                     </tbody>
                 </table>
             </div>
@@ -127,9 +117,6 @@ function create_cart() {
                     }
                     ?></a>
             </div>
-              <!--  <button class="plussknapp" type="submit" name="knapp"></button>
-                <button class="minusknapp" type="submit" name="knapp"></button>
-                -->
 
         </div>
 

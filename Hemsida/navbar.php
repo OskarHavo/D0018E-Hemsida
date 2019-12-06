@@ -2,13 +2,8 @@
 include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 
-/* Den här koden skapar knapparna till alla kategorier och
-*  lägger till alla produkterna. allt detta görs dessutom automatiskt,
-*  så om vi lägger till en ny kategori i databasen dyker den upp
-*  på hemsidan direkt :D
-*/
+
 function create_product($product_query) {
-    //$products = $connection->query("SELECT * FROM Products where ProductType='".$category_array[0]."';");
     if ($product_query->num_rows > 0) {
         while($product = $product_query->fetch_assoc()) {
             if ($product["InStore"]) {
@@ -58,7 +53,6 @@ function create_category() {
         <ul>
 
             <li>
-                <!--<a href="Home.php">Hem</a> -->
                 <a href="Home.php">Hem</a>
             </li>
             <?php
@@ -83,8 +77,8 @@ function create_category() {
         if (isset($_SESSION["CustomerID"])) {
             include_once($_SERVER['DOCUMENT_ROOT']."/userform.php");
         }
-    ?>
+        ?>
 
 
 
-</div>
+    </div>

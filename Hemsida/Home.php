@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
-//$user = fetchSessionUser();
 ?>
 <!DOCTYPE html>
 <html>

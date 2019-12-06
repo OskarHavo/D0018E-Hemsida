@@ -8,22 +8,22 @@
 include_once($_SERVER['DOCUMENT_ROOT']."/redirect.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/server_connect.php");
 
-    session_start();
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        switch($_POST["post_ID"]) {
-            case "cart_change_product":
-                shoppingcart_change_product();
-                break;
-            default:
-                break;
-        }
+session_start();
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    switch($_POST["post_ID"]) {
+        case "cart_change_product":
+            shoppingcart_change_product();
+            break;
+        default:
+            break;
     }
-    redirect($_SERVER['HTTP_REFERER']);
+}
+redirect($_SERVER['HTTP_REFERER']);
 
 
 function shoppingcart_change_product() {
     $conn = server_connect();
-        if ($_POST["addproduct"]) {
+    if ($_POST["addproduct"]) {
 
         $query = $conn->query("SELECT Quantity FROM Orders WHERE OrderID='".$_SESSION["ShoppingcartID"]."' AND ProductNumber='".$_POST["addproduct"]."';");
         $quantity = ($query->fetch_assoc())["Quantity"]+1;

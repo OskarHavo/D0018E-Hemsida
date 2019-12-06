@@ -1,10 +1,10 @@
 <script>
-function upptagetNamnPopUp() {
-  alert("Namnet är redan i bruk");
-}
-function förKortNamnPopUp(){
-    alert("Välj ett användarnamn med minst 5 karaktärer.")
-}
+    function upptagetNamnPopUp() {
+        alert("Namnet är redan i bruk");
+    }
+    function förKortNamnPopUp(){
+        alert("Välj ett användarnamn med minst 5 karaktärer.")
+    }
 
 </script>
 <?php
