@@ -454,6 +454,16 @@ body{
     cursor: pointer;
     padding-top: 14px;
 }
+.deleteproduktknapp{
+    background-image: url(Bilder/deleteknapp.png);
+    background-size: 100%;
+    background-repeat:no-repeat;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    padding-top: 14px;
+    
+}
 
 
 

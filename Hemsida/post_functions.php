@@ -38,6 +38,8 @@ function shoppingcart_change_product() {
         } else {
             $conn->query("UPDATE Orders SET Quantity='".$quantity."' WHERE OrderID='".$_SESSION["ShoppingcartID"]."' AND ProductNumber='".$_POST["subtractproduct"]."';");
         }
+    }else if ($_POST["deleteproduct"]) {
+        //delete me senpai
     }
     $conn->close();
 }
