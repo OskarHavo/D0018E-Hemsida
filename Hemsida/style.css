@@ -283,15 +283,9 @@ body{
     text-align: center;
 }
 .buyButton{
-<<<<<<< HEAD
     width: 45%;
     height: 100%;
     float: left;
-=======
-    width: 45%;
-    height: 100%;
-     float: left;
->>>>>>> origin/master
     text-align: center;
     font-size: 3em;
     font-weight: bold;
