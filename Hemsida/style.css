@@ -283,9 +283,15 @@ body{
     text-align: center;
 }
 .buyButton{
+<<<<<<< HEAD
     width: 45%;
     height: 100%;
     float: left;
+=======
+    width: 45%;
+    height: 100%;
+     float: left;
+>>>>>>> origin/master
     text-align: center;
     font-size: 3em;
     font-weight: bold;
@@ -664,6 +670,7 @@ body{
 /* Admin.php */
 
 
+<<<<<<< HEAD
 /* Prodcut_listing.php */
 .product_listing {
     height: 22%;
@@ -684,6 +691,28 @@ body{
 /* Prodcut_listing.php */
 
 
+=======
+/* Prodcut_listing.php */
+.product_listing {
+    height: 22%;
+    margin-top: 1em;
+    max-height: 14em;
+    width:100%;
+    display: inline-flex;
+    border: solid 1px;
+    background-color: white;
+    box-shadow: 0px 0px 3px grey;
+}
+
+#listingAmountDiv{
+
+
+}
+
+/* Prodcut_listing.php */
+
+
+>>>>>>> origin/master
 
 
 /* Liteknapp */
@@ -809,4 +838,8 @@ body{
 }
 /* Recensions formulär  */
 
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> origin/master
