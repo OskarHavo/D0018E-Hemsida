@@ -24,7 +24,8 @@ if (!$query_result || !$comment_query) {
 
 /* Hämta produkten vi söker från resultatet */
 $product = $query_result->fetch_assoc();
-
+$instock = $product["InStock"];
+$productnumber = $product["ProductNumber"];
 // Kolla om produkten faktiskt finns
 if (!$product || !$product["InStore"]) {
     $conn->close();
@@ -89,78 +90,87 @@ $conn->close();
         <div id="container">
 
             <div id="product">
-                <img src="Bilder/<?php echo $product["ProductNumber"]?>.png">
-            </div>
-            <table class="responsive-table">
-                <caption><?php echo $product["ProductName"];?></caption>
-                <tbody>
-                    <tr>
-                        <th scope="row">Produktyp</th>
-                        <td><?php echo $product["ProductType"];?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Färg</th>
-                        <td><?php echo $product["ProductColor"]?></td>
-                    </tr>
-                    <th scope="row"><BR>&nbsp;</BR></th>
-                    <td></td>
-                    <tr>
-                        <th scope="row">Pris</th>
-                        <td><?php echo $product["ProductPrice"]?> :-</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Lagerstatus</th>
-                        <td>
-                            <?php
+                <div id="imagediv"><img src="Bilder/<?php echo $product["ProductNumber"]?>.png"></div>
+
+                <div class="list">
+                    <table class="responsive-table">
+                        <caption><?php echo $product["ProductName"];?></caption>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Produktyp</th>
+                                <td><?php echo $product["ProductType"];?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Färg</th>
+                                <td><?php echo $product["ProductColor"]?></td>
+                            </tr>
+                            <th scope="row"><BR>&nbsp;</BR></th>
+                            <td></td>
+                            <tr>
+                                <th scope="row">Pris</th>
+                                <td><?php echo $product["ProductPrice"]?> :-</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Lagerstatus</th>
+                                <td>
+                                    <?php
     if ($product["InStock"] == 0) {
         echo "Slut i lager";
     } else {
         echo $product["InStock"]. " st";
     }
-                            ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Artikelnummer</th>
-                        <td><?php echo $product["ProductNumber"]?></td>
-                    </tr>
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Artikelnummer</th>
+                                <td><?php echo $product["ProductNumber"]?></td>
+                            </tr>
 
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
 
-            <!-- <div class= "buyButton" onclick="buy.php<?php
-    echo '?ProductNumber='.$product["ProductNumber"];
-?>">
+                    <div style="width: 100%; background-color:#ff8800; flex-grow : 1;">
+                        <?php include($_SERVER['DOCUMENT_ROOT']."/buy_product.php");?>
+                    </div>
 
-<a>Köp</a>
+                </div>
 
-</div> -->
-            <!--<div class= "buyButton liteknapp">-->
-            <button class= "buyButton liteknapp" type="submit" form="amountForm"><?php
-                if ($product["InStock"] > 0) {
-                    echo "Köp";
-                } else {
-                    echo "Slut i lager";
-                }
-                ?></button>
 
-            <div class ="selectAmountdiv" <?php if ($product["InStock"] == 0) {echo "hidden";}?>>
-                <form class="amountform" id="amountForm" action="<?php
-                                                                 if ($product["InStock"] > 0) {
-                                                                     echo "buy.php";
-                                                                 } else {
-                                                                     echo "#";
-                                                                 }
-                                                                 ?>"
-                      class="form-container" method="post">
-                    <label for="antal"><b>Antal</b></label>
-                    <input type="number" value="1" name="quantity" max="<?php echo $product["InStock"];?>" min="1">
-                    <input type="hidden" value="<?php echo $product["ProductNumber"];?>" name="ProductNumber">
-                </form>
 
             </div>
 
 
+
+
+            <!--
+
+
+<button class= "buyButton liteknapp" type="submit" form="amountForm"><?php
+if ($product["InStock"] > 0) {
+    echo "Köp";
+} else {
+    echo "Slut i lager";
+}
+?></button>
+
+<div class ="selectAmountdiv" <?php if ($product["InStock"] == 0) {echo "hidden";}?>>
+<form class="amountform" id="amountForm" action="<?php
+if ($product["InStock"] > 0) {
+    echo "buy.php";
+} else {
+    echo "#";
+}
+?>"
+class="form-container" method="post">
+<label for="antal"><b>Antal</b></label>
+<input type="number" value="1" name="quantity" max="<?php echo $product["InStock"];?>" min="1">
+<input type="hidden" value="<?php echo $product["ProductNumber"];?>" name="ProductNumber">
+</form>
+
+</div>
+
+-->
 
             <div class = reviewdivrubric>
                 <p>  Recensioner  </p>

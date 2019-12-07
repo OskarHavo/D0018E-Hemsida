@@ -52,7 +52,7 @@ function create_cart() {
             echo    "<td>".$product["Quantity"]."</td>";
             echo    "<td>"."<form action='post_functions.php' method='post'> <input type='hidden' value='cart_change_product' name='post_ID'><button class='minusknapp' type='submit' name='subtractproduct' value='".$product["ProductNumber"]."'>"."</button></form>"."</td>";
             echo    "<td>".$product_cost.":-</td>";
-            echo    "<td>"."<form action='post_functions.php' method='post'> <input type='hidden' value='cart_change_product' name='post_ID'><button class='deleteproduktknapp' type='submit' name='deleteproduct'"; 
+            echo    "<td>"."<form action='post_functions.php' method='post'> <input type='hidden' value='cart_delete_product' name='post_ID'><button class='deleteproduktknapp' type='submit' name='deleteproduct' value='".$product["ProductNumber"]."'>"."</button></form>"."</td>";
             echo "</tr>";
         }
     } else {
