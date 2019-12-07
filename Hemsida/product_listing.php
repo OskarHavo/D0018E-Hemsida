@@ -11,7 +11,7 @@
                 echo "Slut i lager";
             }
             ?></button>
-        <div class ="selectAmountdiv" <?php if ($instock == 0) {echo "hidden";}?>>
+        <div id ="listingAmountDiv"class ="selectAmountdiv" <?php if ($instock == 0) {echo "hidden";}?>>
             <form class="amountform" id="amountForm" action="<?php
                                                              if ($instock > 0) {
                                                                  echo "buy.php";
