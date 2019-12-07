@@ -97,7 +97,7 @@ $conn->close();
                         <caption><?php echo $product["ProductName"];?></caption>
                         <tbody>
                             <tr>
-                                <th scope="row">Produktyp</th>
+                                <th scope="row">Produkttyp</th>
                                 <td><?php echo $product["ProductType"];?></td>
                             </tr>
                             <tr>

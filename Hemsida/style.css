@@ -118,10 +118,10 @@ body{
 }
 
 /* BAR */
-.nav ul {list-style:none; margin:0; padding:0; width: 100%;}
+.nav ul {list-style:none; margin:0; padding:0; width: 100%; z-index: 100;}
 .nav li {float:left; width:19%; background-color:#ff8800; text-align:center;
     position:relative;
-    height:50px; line-height:50px; font-size: 21px;}
+    height:50px; line-height:50px; font-size: 21px; z-index: 100;}
 .nav li ul li {float:none; width:100%; text-align:center;}
 .nav a {text-decoration:none; color:white;background-color: transparent;}
 
@@ -372,7 +372,11 @@ body{
     text-align: center;
 }
 
-
+#buy_product #out_of_order {
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+}
 
 /* Productpage.html */
 
@@ -484,11 +488,7 @@ body{
     
 }
 
-#buy_product #out_of_order {
-    text-align: center;
-    font-size: 3em;
-    font-weight: bold;
-}
+
 
 /* Shoppingcart.html */
 
@@ -699,11 +699,15 @@ body{
     background-color:#bd0b0b;
     min-width:30%;
 }
-
-#listingAmountDiv{
-
+#buy_me .selectAmountDiv .amountForm{
+ padding-top: 85px;
 
 }
+#buy_me p{
+    padding-top: 70px;
+
+}
+
 /* Product_listing.php */
 
 /* Liteknapp */
