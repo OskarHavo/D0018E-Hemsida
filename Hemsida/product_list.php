@@ -46,7 +46,7 @@ $conn->close();
     </head>
     <body >
         <?php include("navbar.php"); ?>
-        <div id="test" >
+        <div >
 
             <?php
             $conn = server_connect();
