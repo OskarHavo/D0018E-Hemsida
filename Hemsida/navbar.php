@@ -70,6 +70,9 @@ function create_category() {
                 </li>
 
             </div>
+            <div class = "shoppingcartamount">
+                <a> 95</a>
+            </div>
 
         </ul>
 
