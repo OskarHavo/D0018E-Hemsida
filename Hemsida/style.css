@@ -484,7 +484,11 @@ body{
     
 }
 
-
+#buy_product #out_of_order {
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+}
 
 /* Shoppingcart.html */
 
