@@ -130,7 +130,7 @@ $conn->close();
                         </tbody>
                     </table>
 
-                    <div id="bytnamnpamej">
+                    <div id="buy_product">
                         <?php include($_SERVER['DOCUMENT_ROOT']."/buy_product.php");?>
                     </div>
 

@@ -223,7 +223,7 @@ body{
 
 /* Productpage.html */
 
-#bytnamnpamej {
+#buy_product {
     width: 100%;
     background-color:#ff8800;
     flex-grow : 1;
@@ -664,7 +664,7 @@ body{
 /* Admin.php */
 
 
-/* Prodcut_listing.php */
+/* Product_listing.php */
 .product_listing {
     height: 22%;
     margin-top: 1em;
@@ -676,11 +676,31 @@ body{
     box-shadow: 0px 0px 3px grey;
 }
 
+.product_listing #imagecontainer {
+    height: 100%;
+    width: 20%;
+}
+
+.product_listing #productlink {
+    width:100%;
+}
+
+.product_listing #out_of_order {
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.product_listing #buy_me {
+    background-color:#bd0b0b;
+    min-width:30%;
+}
+
 #listingAmountDiv{
 
 
 }
-
+/* Product_listing.php */
 
 /* Liteknapp */
 .liteknapp{
@@ -805,8 +825,3 @@ body{
 }
 /* Recensions formulär  */
 
-<<<<<<< HEAD
-
-=======
-
->>>>>>> origin/master
