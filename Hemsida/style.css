@@ -132,11 +132,27 @@ body{
 /* BAR */
 .shoppingcart{
     float: left;
-    width: 5%;
+    width: 3%;
     background-blend-mode:normal;
     background-color: #ff8800;
 
 
+}
+.shoppingcartamount{
+    float: left;
+    width: 2%;
+    text-align:right;
+    background-color: #ff8800;
+    height:50px;
+    
+    
+}
+.shoppingcartamount a{
+    color: white;
+    font-size: 24px;
+    line-height: 40px;
+    padding-right: 3px;
+    
 }
 
 /* Container */
