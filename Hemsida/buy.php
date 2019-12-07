@@ -39,6 +39,5 @@ if ($product_query->num_rows > 0) {
 }
 
 $connection->close();
-echo $productID;
-//redirect($_SERVER['HTTP_REFERER']);
+redirect($_SERVER['HTTP_REFERER']);
 ?>
