@@ -1,4 +1,13 @@
+<script>
+    function popUp() {
+        alert("Felaktig användare");
+        window.location.href='Login.php';
+    }
+</script>
 <?php
+if ($_GET["access"] == "denied") {
+    echo "<script>popUp()</script>";
+}
 ?>
 <!DOCTYPE html>
 <html>

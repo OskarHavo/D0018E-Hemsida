@@ -69,7 +69,7 @@ function login() {
         //$connection->close();
 
         if (!$user) {
-            redirect("Login.php");
+            redirect("Login.php?access=denied");
         }
         $_SESSION["CustomerID"] = $_POST["username"];
 
