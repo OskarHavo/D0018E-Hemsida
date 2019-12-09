@@ -70,8 +70,8 @@ function create_category() {
                 </li>
 
             </div>
-            <div <?php if (!$_SESSION["ShoppingcartID"]) {echo "hidden";} ?>class = "shoppingcartamount">
-                <a><?php echo $_SESSION["CartQuantity"];?></a>
+            <div <?php if (!$_SESSION["CustomerID"]) {echo "hidden";} ?>class = "shoppingcartamount">
+                <a><?php if ($_SESSION["CartQuantity"]) {echo $_SESSION["CartQuantity"];} else {echo "0";}?></a>
             </div>
 
         </ul>
