@@ -18,7 +18,7 @@ function server_connect($username="customer",$password="") {
 
 
 function find_user($username, $connection) {
-    $query_result = $connection->query("select * from Accounts where CustomerID='".$username."';");
+    $query_result = $connection->query("select Accounts.*,Shoppingcart.CartID,Shoppingcart.Quantity FROM Accounts INNER JOIN Shoppingcart ON Accounts.CustomerID=Shoppingcart.CustomerID where Accounts.CustomerID='".$username."';");
     if (!$query_result) {
         echo "Error executing query: (" . $connection->errno . ") " . $connection->error;
         return NULL;
@@ -73,7 +73,8 @@ function login() {
         $_SESSION["CustomerID"] = $_POST["username"];
 
         $_SESSION["root"] = $user["root"];
-        $_SESSION["ShoppingcartID"] = $user["ShoppingcartID"];
+        $_SESSION["ShoppingcartID"] = $user["CartID"];
+        $_SESSION["CartQuantity"] = $user["Quantity"];
         $connection->close();
     } else if (!isset($_SESSION["CustomerID"])) {
         redirect("Login.php");

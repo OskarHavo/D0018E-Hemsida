@@ -25,7 +25,7 @@ if ($_SESSION["ShoppingcartID"] == NULL) {
     $cartquery = $connection->query("SELECT MAX(OrderID) AS cartID FROM OrderNumbers WHERE CustomerID='".$_SESSION["CustomerID"]."';");
     $cartID = $cartquery->fetch_assoc();
     $_SESSION["ShoppingcartID"] = $cartID["cartID"];
-    $connection->query("UPDATE Accounts SET ShoppingcartID='".$cartID["cartID"]."' WHERE CustomerID='".$_SESSION["CustomerID"]."';");
+    $connection->query("UPDATE Shoppingcart SET CartID='".$cartID["cartID"]."' WHERE CustomerID='".$_SESSION["CustomerID"]."';");
 }
 
 $product_query = $connection->query("SELECT Quantity FROM Orders WHERE OrderID='".$_SESSION["ShoppingcartID"]."' AND ProductNumber='".$productID."';");
@@ -37,6 +37,9 @@ if ($product_query->num_rows > 0) {
     $connection->query("INSERT INTO Orders(OrderID, Quantity,ProductNumber,CustomerID) VALUES('".$_SESSION["ShoppingcartID"]."',".$quantity.",'".$productID."','".$_SESSION["CustomerID"]."');");
     //echo "I'm not updating properly";
 }
+$cart_quantity = (($connection->query("SELECT Quantity FROM Shoppingcart WHERE CustomerID='".$_SESSION["CustomerID"]."';"))->fetch_assoc())["Quantity"];
+$_SESSION["CartQuantity"] = $quantity+$cart_quantity;
+$connection->query("UPDATE Shoppingcart SET Quantity='".($quantity+$cart_quantity)."' WHERE CustomerID='".$_SESSION["CustomerID"]."';");
 
 $connection->close();
 redirect($_SERVER['HTTP_REFERER']);

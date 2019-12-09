@@ -14,15 +14,16 @@ if ($_SESSION["ShoppingcartID"] == NULL) {
 
 if ($_GET["delete_cart"]=="TRUE") {
     empty_cart();
+    redirect("Shoppingcart_empty.php");
 }
 
 function empty_cart() {
     global $conn;
-    $conn->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
+    $conn->query("UPDATE Shoppingcart set CartID = NULL,Quantity=NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
     $conn->query("DELETE FROM Orders WHERE OrderID='".$_SESSION["ShoppingcartID"]."';");
     $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$_SESSION["ShoppingcartID"]."';");
     $_SESSION["ShoppingcartID"] = NULL;
-    redirect("Shoppingcart_empty.php");
+    $_SESSION["CartQuantity"] = NULL;
 }
 
 $conn->close();
@@ -56,9 +57,10 @@ function create_cart() {
             echo "</tr>";
         }
     } else {
-        $conn->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
+        $conn->query("UPDATE Shoppingcart set CartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
         $conn->query("DELETE FROM OrderNumbers WHERE OrderID='".$_SESSION["ShoppingcartID"]."';");
         $_SESSION["ShoppingcartID"] = NULL;
+        $_SESSION["CartQuantity"] = NULL;
     }
     $conn->close();
 }

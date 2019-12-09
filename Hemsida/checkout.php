@@ -14,7 +14,7 @@ $orderID = $_GET["OrderID"];
 $session = $_GET["sessionID"];
 if ($_SESSION["ShoppingcartID"]) {
     $connection = server_connect();
-    $connection->query("UPDATE Accounts set ShoppingcartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
+    $connection->query("UPDATE Shoppingcart set CartID = NULL, Quantity=NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
 
     $shoppingcart = $connection->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.ProductNumber FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.Price IS NULL AND Orders.OrderID='".$_SESSION["ShoppingcartID"]."'");
     if ($shoppingcart->num_rows > 0) {
