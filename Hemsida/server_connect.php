@@ -39,6 +39,7 @@ function add_user($username, $password, $connection) {
     $crypto_password = crypt($password,'$6$rounds=5000$'.$salt.'$');
 
     $connection->query("insert into Accounts(CustomerID, Password) values('".$username."','".$crypto_password."');");
+    $connection->query("INSERT INTO Shoppingcart(CustomerID) VALUES('".$username."');");
     # "INSERT INTO Accounts(CustomerID,Password) VALUES('".$username."','".$crypto_password."');"
 }
 
