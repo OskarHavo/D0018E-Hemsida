@@ -49,33 +49,31 @@ function create_category() {
 
     </div>
     <div class="nav">
+        <div id="navbar_menu">
+            <ul>
 
-        <ul>
-
-            <li>
-                <a href="Home.php">Hem</a>
-            </li>
-            <?php
-            create_category();
-            ?>
-            <li>
-                <a href="Userpage.php">Användarsida</a>
-            </li>
-            <div class="shoppingcart">
                 <li>
-                    <a href="Shoppingcart.php">
-                        <img src="Bilder/shoppingcart.png" width="50px" height="50px" >
-                    </a>
-
+                    <a href="Home.php">Hem</a>
                 </li>
+                <?php
+                create_category();
+                ?>
+                <li>
+                    <a href="Userpage.php">Användarsida</a>
+                </li>
+            </ul>
+        </div>
+        <div class="shoppingcart">
 
+            <a href="Shoppingcart.php">
+                <img src="Bilder/shoppingcart.png" width="50px" height="50px" >
+            </a>
+            <div <?php if (!$_SESSION["CustomerID"]) {echo "hidden ";} ?>class="shoppingcartamount">
+                <p><?php if ($_SESSION["CartQuantity"]) {echo $_SESSION["CartQuantity"];} else {echo "0";}?></p>
             </div>
-            <div <?php if (!$_SESSION["CustomerID"]) {echo "hidden";} ?>class = "shoppingcartamount">
-                <a><?php if ($_SESSION["CartQuantity"]) {echo $_SESSION["CartQuantity"];} else {echo "0";}?></a>
-            </div>
 
-        </ul>
 
+        </div>
         <?php
         if (isset($_SESSION["CustomerID"])) {
             include_once($_SERVER['DOCUMENT_ROOT']."/userform.php");

@@ -13,5 +13,4 @@
         <input type="number" value="1" name="quantity" max="<?php echo $instock;?>" min="1">
         <input type="hidden" value="<?php echo $productnumber; ?>" name="ProductNumber">
     </form>
-
 </div>
