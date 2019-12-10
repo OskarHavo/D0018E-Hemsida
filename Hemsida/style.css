@@ -124,8 +124,8 @@ body{
 .nav ul {list-style:none; margin:0; padding:0; width: 100%; z-index: 100;float: left; height:100%;}
 .nav li {float:left; width:20%; background-color:#ff8800; text-align:center;
     position:relative;
-    height:100%; line-height:50px; font-size: 1.3em; z-index: 100;}
-.nav li ul li {float:none; width:100%; text-align:center;}
+    height:100%; line-height:50px; font-size: 1.4em; z-index: 100;}
+.nav li ul li {float:none; width:100%; text-align:center; font-size: 1.0em;}
 .nav a {text-decoration:none; color:white;background-color: transparent;height: 100%;}
 
 .nav p {text-decoration:none; color:white;background-color: transparent;}
@@ -157,12 +157,12 @@ body{
 
 .shoppingcart img {
     display: block;
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .shoppingcartamount{
-    
+
     width:100%;
     text-align:center;
     color: white;
@@ -172,8 +172,8 @@ body{
     //float: right;
     position:relative;
     //top: 50%;
-  //left: 50%;
-  transform: translate(0, -100%);
+    //left: 50%;
+    transform: translate(0, -100%);
     line-height: 0.5em;
     pointer-events: none;
 }
@@ -290,7 +290,7 @@ body{
     float: left;
     background-color: cyan;
     display: flex;
-  flex-flow: column;
+    flex-flow: column;
 }
 
 #product img{ 
@@ -525,7 +525,7 @@ body{
     height: 40px;
     cursor: pointer;
     padding-top: 14px;
-    
+
 }
 
 
