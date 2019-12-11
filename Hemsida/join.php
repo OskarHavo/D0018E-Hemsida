@@ -21,9 +21,11 @@ function user_join() {
         }
 
         if (!find_user($_POST["username"], $connection)) {
+            session_start();
             add_user($_POST["username"], $_POST["password"], $connection);
-            $key = validate_user($_POST["username"], $_POST["password"], $connection);
-            redirect("Userpage.php?sessionID=".$key);
+            $_SESSION["CustomerID"] = $_POST["username"];
+            //$key = validate_user($_POST["username"], $_POST["password"], $connection);
+            redirect("Userpage.php?");
         } else {
             echo "<script>upptagetNamnPopUp()</script>";
         }
