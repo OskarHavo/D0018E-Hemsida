@@ -36,8 +36,10 @@ function create_cart() {
     $conn = server_connect();
     $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock,Products.ProductNumber FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.Price IS NULL AND Orders.OrderID='".$_SESSION["ShoppingcartID"]."';
 ");
+    $_SESSION["cartItems"] = 0;
     if ($shoppingcart->num_rows > 0) {
         while ($product = $shoppingcart->fetch_assoc() ) {
+            $_SESSION["cartItems"] += 1;
             if (($product["InStock"] - $product["Quantity"]) < 0) {
                 $can_buy = FALSE;
             }
