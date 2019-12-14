@@ -87,18 +87,14 @@ function create_category() {
         </div>
 
 
-        <!-- JAA HÄR ÄR DET CSS I HTML JAG VEEET. WÖRK IN PRÖGRESS-->
-        <div class="search" style="float: right; width:6%; height: 100%; background-color: #ff8800;">
-            <!--<a href="Shoppingcart.php">
-
-            </a>-->
+        <!-- Du kan får sätta in css:en där du vill ha den. -->
+        <div class="search" style="float: right; width:6%; height: 100%; background-color: #ff8800;"> <!-- css här -->
             <img src="Bilder/search.png" width="100%" >
-            <button class="knapp" onclick="opensearch()" style="position: absolute; margin:0; height:3.5em; width: 3.5em; transform: translate(-100%, 0%);">
-                sökknapp
+            <button class="knapp" onclick="opensearch()" style="position: absolute; margin:0; height:3.5em; width: 3.5em; transform: translate(-100%, 0%); background: transparent;"> <!-- css här -->
             </button>
 
-            <form action="Shoppingcarg.php" id="searchform" style="display:none">
-                <input type="text" name="firstname">
+            <form action="product_list.php" id="searchform" style="display:none" method="get"> <!-- css här, men jag tycker den kan få vara kvar -->
+                <input type="text" name="searchname">
             </form>
 
         </div>
