@@ -88,12 +88,11 @@ function create_category() {
 
 
         <!-- Du kan får sätta in css:en där du vill ha den. -->
-        <div class="search" style="float: right; width:6%; height: 100%; background-color: #ff8800;"> <!-- css här -->
-            <img src="Bilder/search.png" width="100%" >
-            <button class="knapp" onclick="opensearch()" style="position: absolute; margin:0; height:3.5em; width: 3.5em; transform: translate(-100%, 0%); background: transparent;"> <!-- css här -->
+        <div id="search">
+            <button class="liteknapp" id="searchknapp" onclick="opensearch()">
             </button>
 
-            <form action="product_list.php" id="searchform" style="display:none" method="get"> <!-- css här, men jag tycker den kan få vara kvar -->
+            <form action="product_list.php" id="searchform" method="get"> <!-- css här, men jag tycker den kan få vara kvar -->
                 <input type="text" name="searchname">
             </form>
 
