@@ -137,13 +137,13 @@ body{
 }
 
 .nav #navbar_menu {
-    width: 94%;
+    width: 88%;
     height: 100%;
     float: left;
 }
 /* BAR */
 .shoppingcart{
-    float: right;
+    float: left;
     width: 6%;
     background-blend-mode:normal;
     background-color: #ff8800;

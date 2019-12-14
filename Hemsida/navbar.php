@@ -26,7 +26,9 @@ function create_category() {
 }
 ?>
 <script>
-
+   // window.onload=test() {
+    //    document.getElementById("testform").submit();
+    //}
     function openForm() {
         document.getElementById("userform").style.display = "block";
     }
@@ -34,6 +36,15 @@ function create_category() {
     function closeForm() {
         document.getElementById("userform").style.display = "none";
     } 
+
+    function opensearch() {
+        if (document.getElementById("searchform").style.display != "block") {
+            document.getElementById("searchform").style.display = "block";
+        } else {
+            document.getElementById("searchform").style.display = "none";
+        }
+
+    }
 
 
 
@@ -74,6 +85,24 @@ function create_category() {
 
 
         </div>
+
+
+        <!-- JAA HÄR ÄR DET CSS I HTML JAG VEEET. WÖRK IN PRÖGRESS-->
+        <div class="search" style="float: right; width:6%; height: 100%; background-color: #ff8800;">
+            <!--<a href="Shoppingcart.php">
+
+            </a>-->
+            <img src="Bilder/search.png" width="100%" >
+            <button class="knapp" onclick="opensearch()" style="position: absolute; margin:0; height:3.5em; width: 3.5em; transform: translate(-100%, 0%);">
+                sökknapp
+            </button>
+
+            <form action="Shoppingcarg.php" id="searchform" style="display:none">
+                <input type="text" name="firstname">
+            </form>
+
+        </div>
+
         <?php
         if (isset($_SESSION["CustomerID"])) {
             include_once($_SERVER['DOCUMENT_ROOT']."/userform.php");
