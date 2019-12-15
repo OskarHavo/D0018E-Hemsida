@@ -11,7 +11,7 @@ if ($_SESSION["root"]) {
 function create_orders() {
     //global $user;
     $connection = server_connect();
-    $query = $connection->query("SELECT OrderID, Quantity, ProductNumber, Price FROM Orders WHERE CustomerID='".$_SESSION["CustomerID"]."' AND Price IS NOT NULL;");
+    $query = $connection->query("SELECT OrderID, Quantity, ProductNumber, Price FROM Orders WHERE CustomerID='".$_SESSION["CustomerID"]."' AND OrderID !='".$_SESSION["ShoppingcartID"]."';");
     if ($query->num_rows > 0) {
         while ($row = $query->fetch_assoc()) {
             /* Det här är bara en massa <tr> med <td> inuti. */

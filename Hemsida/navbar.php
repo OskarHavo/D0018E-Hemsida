@@ -87,12 +87,11 @@ function create_category() {
         </div>
 
 
-        <!-- Du kan får sätta in css:en där du vill ha den. -->
         <div id="search">
             <button class="liteknapp" id="searchknapp" onclick="opensearch()">
             </button>
 
-            <form action="product_list.php" id="searchform" method="get"> <!-- css här, men jag tycker den kan få vara kvar -->
+            <form action="product_list.php" id="searchform" method="get">
                 <input type="text" name="searchname">
             </form>
 

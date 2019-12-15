@@ -34,7 +34,7 @@ function create_cart() {
     $can_buy = TRUE;
 
     $conn = server_connect();
-    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock,Products.ProductNumber FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.Price IS NULL AND Orders.OrderID='".$_SESSION["ShoppingcartID"]."';
+    $shoppingcart = $conn->query("SELECT Orders.Quantity, Products.ProductName,Products.ProductPrice,Products.InStock,Products.ProductNumber FROM Orders INNER JOIN Products ON Products.ProductNumber=Orders.ProductNumber WHERE Orders.CustomerID='".$_SESSION["CustomerID"]."' AND Orders.OrderID='".$_SESSION["ShoppingcartID"]."';
 ");
     $_SESSION["cartItems"] = 0;
     if ($shoppingcart->num_rows > 0) {
@@ -57,6 +57,8 @@ function create_cart() {
             echo    "<td>".$product_cost.":-</td>";
             echo    "<td>"."<form action='post_functions.php' method='post'> <input type='hidden' value='cart_delete_product' name='post_ID'><button class='deleteproduktknapp' type='submit' name='deleteproduct' value='".$product["ProductNumber"]."'>"."</button></form>"."</td>";
             echo "</tr>";
+
+            $conn->query("UPDATE Orders SET Price='".$product["ProductPrice"]."' WHERE ProductNumber='".$product["ProductNumber"]."' AND OrderID='".$_SESSION["ShoppingcartID"]."'");
         }
     } else {
         $conn->query("UPDATE Shoppingcart set CartID = NULL WHERE CustomerID='".$_SESSION["CustomerID"]."';");
